@@ -6,7 +6,7 @@ This repository will be the main ticket tracker, as well as the front-end code. 
 * [osma-health-infra](https://github.com/hotosm/osma-health-infra) - private infrastructure code.
 * [osmlint](https://github.com/hotosm/osmlint) - fork of OSMLint with validators specific for this project.
 
-osma-health is being built by [Development Seed](https://developmentseed.org/)
+osma-health is being built by [Development Seed](https://developmentseed.org/).
 
 ### Setup
 _work in progress_
