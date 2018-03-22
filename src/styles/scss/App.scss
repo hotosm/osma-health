@@ -1,0 +1,27 @@
+@import "jeet/jeet";
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #222;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.col1 {
+  @include column(6/12);
+}
+
+.col2 {
+  @include column(6/12);
+}
