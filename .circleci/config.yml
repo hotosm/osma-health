@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: developmentseed/circleci:node8.4-python2.7
+    steps:
+      - checkout
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      - run:
+          name: Install dependencies
+          command: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Build
+          command: yarn run build
+      - run:
+          name: Deploy
+          command: aws --region us-east-1 s3 sync build s3://osma-health/${CIRCLE_SHA1} --delete
+      - run:
+          name: Show site URL
+          command : echo http://osma-health.s3-website-us-east-1.amazonaws.com/${CIRCLE_SHA1}
