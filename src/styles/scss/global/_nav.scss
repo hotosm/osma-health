@@ -1,0 +1,22 @@
+.page__header {
+  @include column(12/12);
+  padding: $global-spacing 0;
+  border-bottom: solid 1px rgba($primary-color, 0.2);
+  color: $base-font-color;
+}
+
+.page__headline {
+	@include column(6/12);
+}
+
+.page__title {
+  font-size: $base-font-size;
+}
+
+.page__nav {
+  font-size: 0.875rem;
+  ul {
+    list-style: none;
+    float: right;
+  }
+}
