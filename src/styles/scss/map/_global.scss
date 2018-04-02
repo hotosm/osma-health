@@ -20,7 +20,16 @@
   .inner {
     position: relative;
     overflow: scroll;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
   }
+  .inner::-webkit-scrollbar { 
+    display: none; 
+  }
+}
+
+.report__panel::-webkit-scrollbar { 
+  display: none; 
 }
 
 .report__actions {
