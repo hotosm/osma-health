@@ -12,7 +12,7 @@ export default class ReportMap extends Component {
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/light-v9',
-      zoom: 11,
+      zoom: 12,
       center
     });
 
@@ -21,6 +21,23 @@ export default class ReportMap extends Component {
         'type': 'geojson',
         'data': aoi
       });
+
+      this.map.addSource('buildings-osm', {
+        type: 'vector',
+        url: 'mapbox://devseed.9lcaji8y'
+      });
+
+      this.map.addLayer({
+        'id': 'buildings-osm',
+        type: 'fill',
+        source: 'buildings-osm',
+        'source-layer': 'osm',
+        'paint': {
+          'fill-color': '#00f',
+          'fill-opacity': 1
+        }
+      })
+
 
       this.map.addLayer({
         'id': 'aoi-fill',
@@ -43,6 +60,7 @@ export default class ReportMap extends Component {
           'line-width': 2,
         }
       });
+
     });
   }
   componentWillUnmount(){
