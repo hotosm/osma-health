@@ -9,7 +9,8 @@ class Report extends Component {
       <section className='page__body'>
         <div className='map'>
           <ReportMap aoi={aoi} />
-          <div className='report__panel'>
+          <div className='report__panel-container'>
+            <div className='report__panel'>
             <div className='report__status report__status--good'>
               <div className='inner'>
                 <p> AOI OSM Data Status: Good </p>
@@ -67,6 +68,18 @@ class Report extends Component {
               </div>
             </div>
           </div>
+          <div className='report__panel-button'>
+            <button className='button button--base-plain button--slide-open'></button>
+          </div>
+          </div>
+        </div>
+        <ul className='map__actions button--group'>
+          <li><button className='button button--small button--primary-filled'>All AOIS</button></li>
+          <li><button className='button button--small button--primary-filled'>Export Data</button></li>
+        </ul>
+        <div className='map__legend'>
+          <p className='legend-label'>Date of OSM edit</p>
+          <div className='legend-bar legend-bar-osm'></div>
         </div>
       </section >
     );

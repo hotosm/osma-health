@@ -9,14 +9,83 @@
   height: 90vh;
 }
 
-.report__panel {
-  color: #FFF;
+.map__actions {
   position: absolute;
+  right: 1rem;
+  margin-top: $global-spacing;
+  li {
+    display: inline-block;
+    margin-right: $global-spacing/2;
+    &:last-child {
+      margin-left: 0;
+    };
+  }
+}
+
+.map__legend {
+  background-color: rgba($base-color, 0.9);
+  color: $primary-color;
+  border-radius: 3px;
+  position: absolute;
+  bottom: $global-spacing * 2;
+  right: $global-spacing * 2;
+  padding: $global-spacing;
+  font-size: 0.75rem;
+  padding-bottom: 2.5rem;
+}
+
+.legend-label {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.legend-bar {
+  height: 0.5rem;
+  position: relative;
+  width: 100%;
+}
+
+.legend-bar-osm {
+  background: linear-gradient(to right, rgba(54, 65, 77, 0.3), rgba(54, 65, 77, 1));
+  &:before {
+    content:'2012';
+    position: absolute;
+    left: 0;
+    bottom: -1.25rem;
+    font-size: 0.65rem;
+  };
+  &:after {
+    content:'2018';
+    position: absolute;
+    right: 0;
+    bottom: -1.25rem;
+    font-size: 0.65rem;
+  };
+}
+
+.report__panel-container {
+  position: absolute;
+  @include column(6/12);
   top: 0;
   bottom: 0;
   left: 0;
+}
+
+.report__panel-button {
+  position: relative;
+  right: 0;
+  height: 3.5rem;
+  background: $primary-color;
+  width: 5%;
+  float: right;
+}
+
+.report__panel {
+  color: #FFF;
+  position: relative;
   height: 90vh;
-  @include column(6/12);
+  width: 95%;
+  float: left;
   background: linear-gradient(to bottom, rgba(52,71,98,0.8) 0%,rgba(38,35,35,0.8) 100%);
   overflow: auto;
   .inner {

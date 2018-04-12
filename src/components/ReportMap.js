@@ -28,30 +28,12 @@ export default class ReportMap extends Component {
       });
 
       this.map.addLayer({
-        'id': 'buildings-osm',
-        type: 'fill',
-        source: 'buildings-osm',
-        'source-layer': 'osm',
-        paint: {
-            'fill-color': [
-              'interpolate',
-              ['linear'],
-              ['number', ['get', '@timestamp']],
-              Math.floor(new Date('2016-01-01')/1000), 'red',
-              Math.floor(new Date()/1000), 'blue',
-            ],
-            'fill-outline-color': 'rgba(255, 255, 255, 0.1)'
-          },
-      })
-
-
-      this.map.addLayer({
         'id': 'aoi-fill',
         'type': 'fill',
         'source': 'aoi',
         'paint': {
           'fill-color': '#FCC074',
-          'fill-opacity': 0.05
+          'fill-opacity': 0.1
         }
       });
 
@@ -65,6 +47,23 @@ export default class ReportMap extends Component {
           'line-width': 2,
         }
       });
+
+      this.map.addLayer({
+        'id': 'buildings-osm',
+        type: 'fill',
+        source: 'buildings-osm',
+        'source-layer': 'osm',
+        paint: {
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['number', ['get', '@timestamp']],
+              Math.floor(new Date('2016-1-01')/1000), 'rgba(54, 66, 77, 0.1)',
+              Math.floor(new Date()/1000), 'rgba(54, 66, 77, 1)',
+            ],
+            'fill-outline-color': 'rgba(255, 255, 255, 0.1)'
+          },
+      })
 
     });
   }
