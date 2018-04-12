@@ -69,7 +69,7 @@ class Report extends Component {
             </div>
           </div>
           <div className='report__panel-button'>
-            <button className='button button--base-plain button--slide-open'></button>
+            <button className='button button--slide-close'></button>
           </div>
           </div>
         </div>

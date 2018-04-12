@@ -216,24 +216,22 @@
 .button--slide-open {
   position: relative;
   &:before {
-    content: url(../graphics/icons/chevron-right.svg);
+    content: url(../../graphics/icons/chevron-right.svg);
     position: absolute;
-    font-size: 1rem;
-    line-height: inherit;
-    vertical-align: top;
     margin-left: 0.25rem;
+    margin-top: 0.25rem;
+    left: 0;
   }
 }
 
 .button--slide-close {
   position: relative;
   &:before {
-    content: url(../graphics/icons/chevron-right.svg);
+    content: url(../../graphics/icons/chevron-left.svg);
     position: absolute;
-    font-size: 1rem;
-    line-height: inherit;
-    vertical-align: top;
     margin-left: 0.25rem;
+    margin-top: 0.25rem;
+    left: 0;
   }
 }
 
