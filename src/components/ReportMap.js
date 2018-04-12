@@ -27,6 +27,29 @@ export default class ReportMap extends Component {
         url: 'mapbox://devseed.9lcaji8y'
       });
 
+      this.map.addSource('completeness', {
+        type: 'vector',
+        url: 'mapbox://hot.botswana-completeness'
+
+      })
+
+      this.map.addLayer({
+        'id': 'completeness',
+        type: 'fill',
+        source: 'completeness',
+        'source-layer': 'completeness',
+        paint: {
+          'fill-color': [
+            'interpolate',
+            ['linear'],
+            ['number', ['get', 'index']],
+            -20, 'red',
+            20, 'green'
+          ],
+          'fill-opacity': 0.3
+        }
+      })
+
       this.map.addLayer({
         'id': 'aoi-fill',
         'type': 'fill',
