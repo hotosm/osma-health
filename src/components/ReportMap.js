@@ -37,8 +37,8 @@ export default class ReportMap extends Component {
               'interpolate',
               ['linear'],
               ['number', ['get', '@timestamp']],
-              new Date('2007-01-01')/1000, 'rgba(0, 0, 0, 0.2)',
-              new Date()/1000, 'rgba(0, 0, 0, 1)'
+              Math.floor(new Date('2016-01-01')/1000), 'red',
+              Math.floor(new Date()/1000), 'blue',
             ],
             'fill-outline-color': 'rgba(255, 255, 255, 0.1)'
           },
