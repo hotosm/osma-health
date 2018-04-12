@@ -108,7 +108,7 @@
     }
 
     @else if $brightness == "dark" {
-      $text-color: tint($color, 100%);
+      $text-color: #FFF;
       $bg-color: $color;
       $bg-color-hover: shade($color, 8%);
       $bg-color-active: shade($color, 12%);
