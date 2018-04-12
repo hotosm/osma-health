@@ -32,10 +32,16 @@ export default class ReportMap extends Component {
         type: 'fill',
         source: 'buildings-osm',
         'source-layer': 'osm',
-        'paint': {
-          'fill-color': '#00f',
-          'fill-opacity': 1
-        }
+        paint: {
+            'fill-color': [
+              'interpolate',
+              ['linear'],
+              ['number', ['get', '@timestamp']],
+              new Date('2007-01-01')/1000, 'rgba(0, 0, 0, 0.2)',
+              new Date()/1000, 'rgba(0, 0, 0, 1)'
+            ],
+            'fill-outline-color': 'rgba(255, 255, 255, 0.1)'
+          },
       })
 
 
@@ -44,8 +50,8 @@ export default class ReportMap extends Component {
         'type': 'fill',
         'source': 'aoi',
         'paint': {
-          'fill-color': '#088',
-          'fill-opacity': 0.1
+          'fill-color': '#FCC074',
+          'fill-opacity': 0.05
         }
       });
 
@@ -54,9 +60,8 @@ export default class ReportMap extends Component {
         'type': 'line',
         'source': 'aoi',
         'paint': {
-          'line-color': '#088',
+          'line-color': '#FCC074',
           'line-opacity': 1,
-          'line-dasharray': [4, 2],
           'line-width': 2,
         }
       });
