@@ -15,8 +15,6 @@ class App extends Component {
   }
 
   render() {
-    const countries = this.props.countries;
-
     return (
       <Router>
         <div className='App'>

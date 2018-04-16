@@ -66,6 +66,9 @@ export default function AppState (state = initialState, action) {
         countries,
         boundaries
       });
+
+    default:
+      break
   }
 
   return state;

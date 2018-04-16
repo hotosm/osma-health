@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect } from 'react-redux';
-import {Link} from 'react-router-dom';
 import ReportMap from '../components/ReportMap';
 
 class Report extends Component {
