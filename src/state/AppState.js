@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import Api from './api';
+import Api from '../api';
 
 /* Actions */
 const COUNTRY_FETCH_FAILED = 'COUNTRY_FETCH_FAILED';
@@ -34,23 +34,37 @@ export function* fetchCountries () {
   }
 }
 
-export function* rootSaga () {
+export function* appSaga () {
   yield takeLatest (COUNTRIES_REQUESTED, fetchCountries);
 }
 
 /* initialState */
 const initialState = {
-  countries: [],
-  selectedBoundary: ""
+  countries: {},
+  boundaries: [],
 }
 
 
 /* Reducer */
-export default function AppLoad (state = initialState, action) {
+export default function AppState (state = initialState, action) {
   switch (action.type) {
     case COUNTRY_FETCH_SUCCEEDED:
+      const countries = action.countries
+      const features = Object.keys(countries).map(country => {
+        const features = countries[country].features;
+        /**
+         * Add the country back into the properties of each boundary
+         */
+        features.forEach(feature => {
+          feature.properties['country'] = country;
+          return feature;
+        });
+        return features;
+      });
+      const boundaries = [].concat.apply([], features); // Flatten array of arrays
       return Object.assign({}, state, {
-        countries: action.countries
+        countries,
+        boundaries
       });
   }
 

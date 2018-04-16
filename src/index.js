@@ -10,12 +10,12 @@ import './styles/css/index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import AppLoad, {rootSaga} from './AppLoad';
+import {rootState, rootSaga} from './state';
 
 /* store and middleware */
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(AppLoad, applyMiddleware(sagaMiddleware));
+const store = createStore(rootState, applyMiddleware(sagaMiddleware));
 sagaMiddleware.run(rootSaga);
 
 /* let's kick it off */

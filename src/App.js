@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { requestCountries } from './AppLoad';
+import { requestCountries } from './state/AppState';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 /* Views */
@@ -32,7 +32,8 @@ class App extends Component {
               </nav>
             </div>
           </header>
-        {aoi ? <Report aoi={aoi} />:<div></div> }
+           <Route exact path="/" component={Home} />
+           <Route path="/report/:country/:aoi" component={Report} /> 
         </div>
       </Router>
     );
