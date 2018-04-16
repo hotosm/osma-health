@@ -33,7 +33,7 @@ class App extends Component {
             </div>
           </header>
            <Route exact path="/" component={Home} />
-           <Route path="/report/:country/:aoi" component={Report} /> 
+           <Route path="/:country/:aoi" component={Report} /> 
         </div>
       </Router>
     );

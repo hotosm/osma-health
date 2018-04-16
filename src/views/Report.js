@@ -1,14 +1,28 @@
 import React, { Component } from 'react';
+import {connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 import ReportMap from '../components/ReportMap';
 
 class Report extends Component {
+
   render() {
-    const aoi = this.props.aoi;
+    const params = this.props.match.params;
+    const { boundaries } = this.props;
+    let aoi = null;
+
+    if (boundaries.length > 0) {
+      aoi = boundaries.filter(bnd => {
+        return (
+          bnd.properties.country === params.country && 
+          bnd.properties.name === params.aoi
+        );
+      })[0];
+    }
 
     return (
       <section className='page__body'>
         <div className='map'>
-          <ReportMap aoi={aoi} />
+          {aoi ? <ReportMap aoi={aoi} /> : <div></div>}
           <div className='report__panel-container'>
             <div className='report__panel'>
             <div className='report__status report__status--good'>
@@ -86,4 +100,10 @@ class Report extends Component {
   }
 }
 
-export default Report;
+const mapStateToProps = (state) => {
+  return {
+    boundaries: state.AppState.boundaries
+  }
+}
+
+export default connect(mapStateToProps)(Report);
