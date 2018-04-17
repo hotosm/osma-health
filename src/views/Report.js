@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 import {connect } from 'react-redux';
 import ReportMap from '../components/ReportMap';
+import {requestBoundary} from '../state/ReportState';
 
 class Report extends Component {
+  constructor (props) {
+    super(props); 
+    const { country, aoi } = this.props.match.params;
+    this.props.getStats(country, aoi);
+  }
 
   render() {
-    const params = this.props.match.params;
-    const { boundaries } = this.props;
-    let aoi = null;
-
+    const { country, aoi } = this.props.match.params;
+    const { boundaries, stats } = this.props;
+    let layer = null;
     if (boundaries.length > 0) {
-      aoi = boundaries.filter(bnd => {
+      layer = boundaries.filter(bnd => {
         return (
-          bnd.properties.country === params.country && 
-          bnd.properties.name === params.aoi
+          bnd.properties.country === country && 
+          bnd.properties.name === aoi
         );
       })[0];
     }
@@ -21,7 +26,7 @@ class Report extends Component {
     return (
       <section className='page__body'>
         <div className='map'>
-          {aoi ? <ReportMap aoi={aoi} /> : <div></div>}
+          {layer ? <ReportMap aoi={layer} /> : <div></div>}
           <div className='report__panel-container'>
             <div className='report__panel'>
             <div className='report__status report__status--good'>
@@ -101,8 +106,15 @@ class Report extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    boundaries: state.AppState.boundaries
+    boundaries: state.AppState.boundaries,
+    stats: state.ReportState.stats
   }
 }
 
-export default connect(mapStateToProps)(Report);
+const mapDispatchToProps = dispatch => {
+  return {
+    getStats: (...args) => dispatch(requestBoundary(...args))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Report);
