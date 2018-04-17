@@ -24,22 +24,24 @@ class Home extends Component {
       <section className='page__body'>
         <div className='map'>
           <HomeMap boundaries={boundaries} />
-          <div className='report__panel-container'>
-            <div className='report__panel'>
+          <div className='panel-container'>
+            <div className='panel'>
               <div className='inner'>
-                <div className='report__header'>
-                  <h1 className='report__title'>Select a boundary</h1>
+                <div className='panel__header'>
+                  <h1 className='panel__title'>HOT Malaria Analytics Tool</h1>
+                  <p className='panel__description'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a volutpat lectus. Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
                 </div>
-                <div className='report__body'>
-                  <div className='report__section'>
-                    <div className='report__section-header'>
+                <div className='panel__body'>
+                  <div className='panel__section'>
+                    <div className='panel__form'>
+                      <p className='form__label'>Search for an Area to see Analytics.</p>
                       <HomeSelect boundaries={boundaries} handleChange={this.handleChange} />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='report__panel-button'>
+            <div className='panel-button'>
               <button className='button button--slide-close'></button>
             </div>
           </div>
