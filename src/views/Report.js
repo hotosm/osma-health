@@ -93,6 +93,23 @@ class Report extends Component {
         <div className='map__legend'>
           <p className='legend-label'>Date of OSM edit</p>
           <div className='legend-bar legend-bar-osm'></div>
+          <div className='color-scale__container'>
+            <p className='legend-label'>Completeness of Map</p>
+            <ul className='color-scale'>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+            </ul>
+            <div className='scale-labels'>
+              <p className='scale-number less'>Less Mapped</p>
+              <p className='scale-number more'>More Mapped</p>
+            </div>
+          </div>
         </div>
       </section >
     );

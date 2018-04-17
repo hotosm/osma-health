@@ -20,6 +20,7 @@ export default class ReportMap extends Component {
       .range(d3Chromatic.schemeRdYlGn[9])
 
     const stops = scale.quantiles().map( value => {
+        console.log(scale(-0.03782042391598225));
       return [value, scale(value)]
     });
 
@@ -61,7 +62,7 @@ export default class ReportMap extends Component {
         "stops": [
             [1, 0.5],
             [12, 0.3],
-            [14, 0.1]
+            [14, 0.05]
             ]
           }   
         }
