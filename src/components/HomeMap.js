@@ -15,7 +15,7 @@ export default class HomeMap extends Component {
 
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/light-v9',
+      style: 'mapbox://styles/devseed/cjfvggcjha5ml2rmyy25i1vde',
       zoom: 3
     });
   }
