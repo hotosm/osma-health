@@ -57,26 +57,22 @@ export default class ReportMap extends Component {
             'property': 'index',
             'stops': stops
           },
-          'fill-opacity': 0.3
+          'fill-opacity': {
+        "stops": [
+            [1, 0.5],
+            [12, 0.3],
+            [14, 0.05]
+            ]
+          }   
         }
       })
-
-      this.map.addLayer({
-        'id': 'aoi-fill',
-        'type': 'fill',
-        'source': 'aoi',
-        'paint': {
-          'fill-color': '#FCC074',
-          'fill-opacity': 0.1
-        }
-      });
 
       this.map.addLayer({
         'id': 'aoi-line',
         'type': 'line',
         'source': 'aoi',
         'paint': {
-          'line-color': '#FCC074',
+          'line-color': '#36414D',
           'line-opacity': 1,
           'line-width': 2,
         }

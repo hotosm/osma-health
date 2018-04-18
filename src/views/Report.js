@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {connect } from 'react-redux';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import ReportMap from '../components/ReportMap';
 
 class Report extends Component {
@@ -87,12 +88,28 @@ class Report extends Component {
           </div>
         </div>
         <ul className='map__actions button--group'>
-          <li><button className='button button--small button--primary-filled'>All AOIS</button></li>
-          <li><button className='button button--small button--primary-filled'>Export Data</button></li>
+          <li><Link to="/" className='button button--small button--primary-filled'>All AOIS</Link></li>
         </ul>
         <div className='map__legend'>
           <p className='legend-label'>Date of OSM edit</p>
           <div className='legend-bar legend-bar-osm'></div>
+          <div className='color-scale__container'>
+            <p className='legend-label'>Completeness of Map</p>
+            <ul className='color-scale'>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+              <li className='color-scale__item'></li>
+            </ul>
+            <div className='scale-labels'>
+              <p className='scale-number less'>Less Mapped</p>
+              <p className='scale-number more'>More Mapped</p>
+            </div>
+          </div>
         </div>
       </section >
     );
