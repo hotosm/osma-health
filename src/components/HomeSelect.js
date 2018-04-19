@@ -7,9 +7,8 @@ export default ({boundaries, handleChange}) => {
 
   if (boundaries.length > 0) {
     options = boundaries.map(fc => {
-      const name = fc.properties.name;
-      const country = fc.properties.country;
-      return { value: `${country}/${name}`, label: `${country} - ${name}` };
+      const {name, id, country} = fc.properties;
+      return { value: `${country}/${id}`, label: `${country} - ${name}` };
     });
   }
 

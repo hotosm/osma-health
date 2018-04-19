@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {connect } from 'react-redux';
 import ReportMap from '../components/ReportMap';
 import {requestBoundary} from '../state/ReportState';
+import numeral from 'numeral';
+import {format} from 'date-fns';
 
 class Report extends Component {
   constructor (props) {
@@ -13,12 +15,15 @@ class Report extends Component {
   render() {
     const { country, aoi } = this.props.match.params;
     const { boundaries, stats } = this.props;
+
+    const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1); 
+
     let layer = null;
     if (boundaries.length > 0) {
       layer = boundaries.filter(bnd => {
         return (
           bnd.properties.country === country && 
-          bnd.properties.name === aoi
+          bnd.properties.id === aoi
         );
       })[0];
     }
@@ -29,16 +34,19 @@ class Report extends Component {
       buildingResidential, 
       buildingResidentialIncomplete,
       duplicateCount,
-      totalBuildings
-
+      totalBuildings,
+      untaggedWays
     } = stats['building-stats'];
 
+    const timestamp = stats.timestamp;
+
     // Stats calculation
-    const numberBuildings = Number(totalBuildings);
-    const numberResidential = Number(buildingResidential);
-    const percentResidentialBuildings = Number(numberResidential / numberBuildings * 100).toFixed(0);
-    const percentCompleteBuildings = Number((numberResidential - Number(buildingResidentialIncomplete)) * 100 / numberBuildings).toFixed(0);
-    const numberDuplicates = Number(duplicateCount);
+    const numberUntaggedWays = numeral(untaggedWays);
+    const numberBuildings = numeral(totalBuildings);
+    const numberResidential = numeral(buildingResidential);
+    const percentResidentialBuildings = numeral(numberResidential / numberBuildings);
+    const percentCompleteBuildings = numeral((numberResidential - numeral(buildingResidentialIncomplete))/ numberBuildings);
+    const numberDuplicates = numeral(duplicateCount);
 
     return (
       <section className='page__body'>
@@ -53,13 +61,13 @@ class Report extends Component {
             </div>
             <div className='inner'>
               <div className='report__actions'>
-                <p className='note'>Report last updated 3/12/18</p>
+                <p className='note'>Report last updated {format(timestamp, 'MMM. D, YYYY')}</p>
                 <button className='button button--small button--base-bounded'>Download Report</button>
               </div>
               <div className='report__header'>
-                <h1 className='report__title'>Ghanzi District</h1>
+                <h1 className='report__title'>{capitalize(aoi)} District</h1>
                 <ul className='report__meta'>
-                  <li>Botswana</li>
+                  <li>{capitalize(country)}</li>
                   <li>Est. Population 1,343</li>
                 </ul>
               </div>
@@ -72,14 +80,13 @@ class Report extends Component {
                 <div className='report__section'>
                   <div className='report__section-header'>
                     <h2 className='report__section-title'>Attribute Completeness</h2>
-                    <p className='note'>75% Completeness</p>
                   </div>
                   <div className='report__section-body'>
-                    <p><strong>{numberBuildings} </strong><small>OSM buildings in this AOI</small></p>
+                    <p><strong>{numberBuildings.format('0,0')} </strong><small>OSM buildings in this AOI</small></p>
                     <ul className='stat-list'>
-                      <li>15%<small>untagged closeways</small></li>
-                      <li>{percentResidentialBuildings}%<small>residential buildings</small></li>
-                      <li>{percentCompleteBuildings}%<small>residential buildings with roof and wall tags</small></li>
+                      <li>{numberUntaggedWays.format('0,0')}<small>untagged closeways</small></li>
+                      <li>{percentResidentialBuildings.format('0%')}<small>residential buildings</small></li>
+                      <li>{percentCompleteBuildings.format('0%')}<small>residential buildings with roof and wall tags</small></li>
                     </ul>
                   </div>
                 </div>
@@ -95,9 +102,8 @@ class Report extends Component {
                   </div>
                   <div className='report__section-body'>
                     <ul className='stat-list'>
-                      <li>{numberDuplicates}<small>duplicated buildings</small></li>
-                      <li>31%<small>positioning errors</small></li>
-                    </ul>
+                      <li>{numberDuplicates.format('0,0')}<small>duplicated buildings</small></li>
+                   </ul>
                   </div>
                 </div>
               </div>
