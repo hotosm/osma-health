@@ -23,6 +23,23 @@ class Report extends Component {
       })[0];
     }
 
+    if (!stats) return <div></div>; //FIXME Should return loading indicator
+    
+    const {
+      buildingResidential, 
+      buildingResidentialIncomplete,
+      duplicateCount,
+      totalBuildings
+
+    } = stats['building-stats'];
+
+    // Stats calculation
+    const numberBuildings = Number(totalBuildings);
+    const numberResidential = Number(buildingResidential);
+    const percentResidentialBuildings = Number(numberResidential / numberBuildings * 100).toFixed(0);
+    const percentCompleteBuildings = Number((numberResidential - Number(buildingResidentialIncomplete)) * 100 / numberBuildings).toFixed(0);
+    const numberDuplicates = Number(duplicateCount);
+
     return (
       <section className='page__body'>
         <div className='map'>
@@ -58,11 +75,11 @@ class Report extends Component {
                     <p className='note'>75% Completeness</p>
                   </div>
                   <div className='report__section-body'>
-                    <p><strong>15 </strong><small>OSM buildings in this AOI</small></p>
+                    <p><strong>{numberBuildings} </strong><small>OSM buildings in this AOI</small></p>
                     <ul className='stat-list'>
                       <li>15%<small>untagged closeways</small></li>
-                      <li>31%<small>residential buildings</small></li>
-                      <li>75%<small>residential buildings with roof and wall tags</small></li>
+                      <li>{percentResidentialBuildings}%<small>residential buildings</small></li>
+                      <li>{percentCompleteBuildings}%<small>residential buildings with roof and wall tags</small></li>
                     </ul>
                   </div>
                 </div>
@@ -78,7 +95,7 @@ class Report extends Component {
                   </div>
                   <div className='report__section-body'>
                     <ul className='stat-list'>
-                      <li>25<small>duplicated buildings</small></li>
+                      <li>{numberDuplicates}<small>duplicated buildings</small></li>
                       <li>31%<small>positioning errors</small></li>
                     </ul>
                   </div>
