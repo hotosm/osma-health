@@ -2,27 +2,59 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import ReportMap from '../components/ReportMap';
+import ReportEditsChart from '../components/ReportEditsChart';
+import {requestBoundary} from '../state/ReportState';
+import numeral from 'numeral';
+import {format} from 'date-fns';
 
 class Report extends Component {
+  constructor (props) {
+    super(props); 
+    const { country, aoi } = this.props.match.params;
+    this.props.getStats(country, aoi);
+  }
 
   render() {
-    const params = this.props.match.params;
-    const { boundaries } = this.props;
-    let aoi = null;
+    const { country, aoi } = this.props.match.params;
+    const { boundaries, stats } = this.props;
 
+    const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1); 
+
+    let layer = null;
     if (boundaries.length > 0) {
-      aoi = boundaries.filter(bnd => {
+      layer = boundaries.filter(bnd => {
         return (
-          bnd.properties.country === params.country && 
-          bnd.properties.name === params.aoi
+          bnd.properties.country === country && 
+          bnd.properties.id === aoi
         );
       })[0];
     }
 
+    if (!stats) return <div></div>; //FIXME Should return loading indicator
+    
+    const {
+      buildingResidential, 
+      buildingResidentialIncomplete,
+      duplicateCount,
+      totalBuildings,
+      untaggedWays
+    } = stats['building-stats'];
+
+    const timestamp = stats.timestamp;
+    const timeBins = stats['time-bins'];
+
+    // Stats calculation
+    const numberUntaggedWays = numeral(untaggedWays);
+    const numberBuildings = numeral(totalBuildings);
+    const numberResidential = numeral(buildingResidential);
+    const percentResidentialBuildings = numeral(numberResidential / numberBuildings);
+    const percentCompleteBuildings = numeral((numberResidential - numeral(buildingResidentialIncomplete))/ numberBuildings);
+    const numberDuplicates = numeral(duplicateCount);
+
     return (
       <section className='page__body'>
         <div className='map'>
-          {aoi ? <ReportMap aoi={aoi} /> : <div></div>}
+          {layer ? <ReportMap aoi={layer} /> : <div></div>}
           <div className='report__panel-container'>
             <div className='report__panel'>
             <div className='report__status report__status--good'>
@@ -32,13 +64,13 @@ class Report extends Component {
             </div>
             <div className='inner'>
               <div className='report__actions'>
-                <p className='note'>Report last updated 3/12/18</p>
+                <p className='note'>Report last updated {format(timestamp, 'MMM. D, YYYY')}</p>
                 <button className='button button--small button--base-bounded'>Download Report</button>
               </div>
               <div className='report__header'>
-                <h1 className='report__title'>Ghanzi District</h1>
+                <h1 className='report__title'>{capitalize(aoi)} District</h1>
                 <ul className='report__meta'>
-                  <li>Botswana</li>
+                  <li>{capitalize(country)}</li>
                   <li>Est. Population 1,343</li>
                 </ul>
               </div>
@@ -51,21 +83,20 @@ class Report extends Component {
                 <div className='report__section'>
                   <div className='report__section-header'>
                     <h2 className='report__section-title'>Attribute Completeness</h2>
-                    <p className='note'>75% Completeness</p>
                   </div>
                   <div className='report__section-body'>
-                    <p><strong>15 </strong><small>OSM buildings in this AOI</small></p>
+                    <p><strong>{numberBuildings.format('0,0')} </strong><small>OSM buildings in this AOI</small></p>
                     <ul className='stat-list'>
-                      <li>15%<small>untagged closeways</small></li>
-                      <li>31%<small>residential buildings</small></li>
-                      <li>75%<small>residential buildings with roof and wall tags</small></li>
+                      <li>{numberUntaggedWays.format('0,0')}<small>untagged closeways</small></li>
+                      <li>{percentResidentialBuildings.format('0%')}<small>residential buildings</small></li>
+                      <li>{percentCompleteBuildings.format('0%')}<small>residential buildings with roof and wall tags</small></li>
                     </ul>
                   </div>
                 </div>
                 <div className='report__section'>
                   <div className='report__section-header'>
                     <h2 className='report__section-title'>Temporal Accuracy</h2>
-                    <p className='note'>Last Edit: 3/2/2018 3:30pm</p>
+                    <ReportEditsChart timeBins={timeBins} />
                   </div>
                 </div>
                 <div className='report__section'>
@@ -74,9 +105,8 @@ class Report extends Component {
                   </div>
                   <div className='report__section-body'>
                     <ul className='stat-list'>
-                      <li>25<small>duplicated buildings</small></li>
-                      <li>31%<small>positioning errors</small></li>
-                    </ul>
+                      <li>{numberDuplicates.format('0,0')}<small>duplicated buildings</small></li>
+                   </ul>
                   </div>
                 </div>
               </div>
@@ -118,8 +148,15 @@ class Report extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    boundaries: state.AppState.boundaries
+    boundaries: state.AppState.boundaries,
+    stats: state.ReportState.stats
   }
 }
 
-export default connect(mapStateToProps)(Report);
+const mapDispatchToProps = dispatch => {
+  return {
+    getStats: (...args) => dispatch(requestBoundary(...args))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Report);
