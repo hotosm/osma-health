@@ -95,7 +95,6 @@ class Report extends Component {
                 <div className='report__section'>
                   <div className='report__section-header'>
                     <h2 className='report__section-title'>Temporal Accuracy</h2>
-                    <p className='note'>Last Edit: 3/2/2018 3:30pm</p>
                     <ReportEditsChart timeBins={timeBins} />
                   </div>
                 </div>

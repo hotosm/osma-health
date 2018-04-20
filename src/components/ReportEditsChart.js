@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BarChart, Bar, CartesianGrid, ResponsiveContainer, XAxis, Tooltip} from 'recharts';
+import {BarChart, Bar, CartesianGrid, XAxis, Tooltip} from 'recharts';
 import {subMonths, format} from 'date-fns';
 
 /* Custom tooltip if we need it */
