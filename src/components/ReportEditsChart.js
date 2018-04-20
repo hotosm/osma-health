@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {BarChart, Bar, CartesianGrid, XAxis, Tooltip} from 'recharts';
 import {subMonths, format} from 'date-fns';
+import numeral from 'numeral';
 
 /* Custom tooltip if we need it */
 
@@ -32,7 +33,7 @@ const CustomTooltip = ({active, payload}) => {
           <li className="custom-tooltip-item" style={itemStyle}>
             <span>{formattedDate}</span>
             <span>: </span>
-            <span>{value} edits</span>
+            <span>{numeral(value).format('0,0')} edits</span>
           </li>
         </ul>
       </div>
