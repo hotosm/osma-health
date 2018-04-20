@@ -15,7 +15,7 @@ export default class HomeMap extends Component {
 
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/light-v9',
+      style: 'mapbox://styles/devseed/cjfvggcjha5ml2rmyy25i1vde',
       zoom: 3
     });
   }
@@ -50,7 +50,7 @@ export default class HomeMap extends Component {
             'source': 'aois',
             'paint': {
               'fill-color': '#FCC074',
-              'fill-opacity': 0.1
+              'fill-opacity': 0.4
             }
           });
 
@@ -59,9 +59,9 @@ export default class HomeMap extends Component {
             'type': 'line',
             'source': 'aois',
             'paint': {
-              'line-color': '#FCC074',
+              'line-color': '#36414D',
               'line-opacity': 1,
-              'line-width': 2,
+              'line-width': 1,
             }
           });
           this.map.fitBounds(bbox(aois), {maxZoom: 6});
