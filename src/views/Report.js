@@ -16,7 +16,7 @@ class Report extends Component {
 
   render() {
     const { country, aoi } = this.props.match.params;
-    const { boundaries, stats } = this.props;
+    const { boundaries, stats, domain } = this.props;
 
     const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1); 
 
@@ -30,7 +30,7 @@ class Report extends Component {
       })[0];
     }
 
-    if (!stats) return <div></div>; //FIXME Should return loading indicator
+    if (!stats || !domain) return <div></div>; //FIXME Should return loading indicator
     
     const {
       buildingResidential, 
@@ -54,7 +54,7 @@ class Report extends Component {
     return (
       <section className='page__body'>
         <div className='map'>
-          {layer ? <ReportMap aoi={layer} /> : <div></div>}
+          {<ReportMap aoi={layer} domain={domain}/>}
           <div className='report__panel-container'>
             <div className='report__panel'>
             <div className='report__status report__status--good'>
@@ -149,7 +149,8 @@ class Report extends Component {
 const mapStateToProps = (state) => {
   return {
     boundaries: state.AppState.boundaries,
-    stats: state.ReportState.stats
+    stats: state.ReportState.stats,
+    domain: state.ReportState.domain
   }
 }
 
