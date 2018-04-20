@@ -63,7 +63,6 @@ export default class ReportsEditsChart extends Component {
     data = Object.keys(data).map(key => {
       return { 'date': key, ...data[key]};
     });
-    console.log(data);
 
     return (
       <BarChart height={300} width={600} data={data}>

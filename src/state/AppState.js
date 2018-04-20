@@ -44,7 +44,6 @@ const initialState = {
   boundaries: [],
 }
 
-
 /* Reducer */
 export default function AppState (state = initialState, action) {
   switch (action.type) {
