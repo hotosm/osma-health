@@ -37,8 +37,11 @@ class Report extends Component {
       buildingResidentialIncomplete,
       duplicateCount,
       totalBuildings,
-      untaggedWays
+      untaggedWays,
+      population
+
     } = stats['building-stats'];
+    console.log(stats);
 
     const timestamp = stats.timestamp;
     const timeBins = stats['time-bins'];
@@ -50,6 +53,7 @@ class Report extends Component {
     const percentResidentialBuildings = numeral(numberResidential / numberBuildings);
     const percentCompleteBuildings = numeral((numberResidential - numeral(buildingResidentialIncomplete))/ numberBuildings);
     const numberDuplicates = numeral(duplicateCount);
+    const estimatePopulation = numeral(population)
 
     return (
       <section className='page__body'>
@@ -71,7 +75,7 @@ class Report extends Component {
                 <h1 className='report__title'>{capitalize(aoi)} District</h1>
                 <ul className='report__meta'>
                   <li>{capitalize(country)}</li>
-                  <li>Est. Population 1,343</li>
+                  <li>Est. Population {estimatePopulation.format('0,0')}</li>
                 </ul>
               </div>
               <div className='report__body'>
