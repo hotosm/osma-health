@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {connect } from 'react-redux';
+import {connect} from 'react-redux';
 import ReportMap from '../components/ReportMap';
+import ReportEditsChart from '../components/ReportEditsChart';
 import {requestBoundary} from '../state/ReportState';
 import numeral from 'numeral';
 import {format} from 'date-fns';
@@ -39,6 +40,7 @@ class Report extends Component {
     } = stats['building-stats'];
 
     const timestamp = stats.timestamp;
+    const timeBins = stats['time-bins'];
 
     // Stats calculation
     const numberUntaggedWays = numeral(untaggedWays);
@@ -94,6 +96,7 @@ class Report extends Component {
                   <div className='report__section-header'>
                     <h2 className='report__section-title'>Temporal Accuracy</h2>
                     <p className='note'>Last Edit: 3/2/2018 3:30pm</p>
+                    <ReportEditsChart timeBins={timeBins} />
                   </div>
                 </div>
                 <div className='report__section'>
