@@ -31,16 +31,18 @@
   right: $global-spacing * 2;
   padding: $global-spacing;
   font-size: 0.75rem;
-  padding-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  width: 13rem;
 }
 
 .legend-label {
   position: relative;
-  margin-bottom: 0;
+  margin-bottom: 0.15rem;
+  font-weight: $base-font-bold;
 }
 
 .legend-bar {
-  height: 0.5rem;
+  height: 0.75rem;
   position: relative;
   width: 100%;
 }
@@ -52,14 +54,16 @@
     position: absolute;
     left: 0;
     bottom: -1.25rem;
-    font-size: 0.65rem;
+    font-size: 0.675rem;
+    font-weight: $base-font-regular;
   };
   &:after {
     content:'2018';
     position: absolute;
     right: 0;
     bottom: -1.25rem;
-    font-size: 0.65rem;
+    font-size: 0.675rem;
+    font-weight: $base-font-regular;
   };
 }
 
@@ -205,4 +209,64 @@
       background-color: #40CA3B;
     };
   }
+}
+
+.color-scale__container {
+  float: left;
+  margin-top: $global-spacing * 2;
+  width: 100%;
+}
+
+.color-scale {
+  list-style: none;
+  padding-right: 0;
+  margin: 0;
+  position: relative;
+}
+
+.color-scale__item {
+  float: left;
+  height: 0.75rem;
+  width: 12.5%;
+  &:first-child {
+    background-color: #D73027;
+  }
+  &:nth-child(2) {
+    background-color: #F46D43;
+  }
+  &:nth-child(3) {
+    background-color: #FDAE61;
+  }
+  &:nth-child(4) {
+    background-color: #FEE08B;
+  }
+  &:nth-child(5) {
+    background-color: #D9EF8B;
+  }
+  &:nth-child(6) {
+    background-color: #A6D96A;
+  }
+  &:nth-child(7) {
+    background-color: #66BD63;
+  }
+  &:nth-child(8) {
+    background-color: #1A9850;
+  }
+}
+
+.scale-labels {
+  width: 100%;
+  p {
+    text-align: center;
+    font-size: 0.675rem;
+    font-weight: $base-font-regular;
+  }
+}
+
+.less {
+  float: left;
+}
+
+.more {
+  float: right;
 }
