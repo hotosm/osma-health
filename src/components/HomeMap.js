@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { featureCollection } from '@turf/helpers';
+import { withRouter } from 'react-router';
 import bbox from '@turf/bbox';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q';
 
-export default class HomeMap extends Component {
+class HomeMap extends Component {
   constructor(props) {
     super(props);
     this.renderCountries = this.renderCountries.bind(this);
@@ -25,7 +26,7 @@ export default class HomeMap extends Component {
   }
 
   renderCountries() {
-    const { boundaries } = this.props;
+    const { boundaries, history } = this.props;
     if (boundaries && boundaries.length > 0 && this.map) {
       const aois = featureCollection(boundaries);
 
@@ -52,6 +53,15 @@ export default class HomeMap extends Component {
               'fill-color': '#FCC074',
               'fill-opacity': 0.4
             }
+          });
+
+          this.map.on('click', 'aoi-fill', (e) => {
+            const {country, id} = e.features[0].properties;
+            history.push(`/${country}/${id}`);
+          });
+
+          this.map.on('mouseenter', 'aoi-fill', () => {
+            this.map.getCanvas().style.cursor = 'pointer';
           });
 
           this.map.addLayer({
@@ -81,3 +91,5 @@ export default class HomeMap extends Component {
     return <div style={style} ref={el => this.mapContainer = el} />;
   }
 }
+
+export default withRouter(HomeMap);
