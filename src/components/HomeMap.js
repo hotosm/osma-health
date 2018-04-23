@@ -31,7 +31,6 @@ class HomeMap extends Component {
   }
 
   componentWillUnmount() {
-    console.log('unmount');
     this.map.remove();
   }
 

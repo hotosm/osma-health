@@ -19,7 +19,6 @@ class Home extends Component {
 
   render() {
     const { boundaries } = this.props;
-    console.log('rendering', boundaries);
 
     return (
       <section className='page__body'>
