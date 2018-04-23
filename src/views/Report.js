@@ -6,6 +6,7 @@ import ReportEditsChart from '../components/ReportEditsChart';
 import {requestBoundary} from '../state/ReportState';
 import numeral from 'numeral';
 import {format} from 'date-fns';
+import upperFirst from 'lodash.upperfirst';
 
 class Report extends Component {
   constructor (props) {
@@ -17,8 +18,6 @@ class Report extends Component {
   render() {
     const { country, aoi } = this.props.match.params;
     const { boundaries, stats, domain } = this.props;
-
-    const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1); 
 
     let layer = null;
     if (boundaries.length > 0) {
@@ -71,9 +70,9 @@ class Report extends Component {
                 <button className='button button--small button--base-bounded'>Download Report</button>
               </div>
               <div className='report__header'>
-                <h1 className='report__title'>{capitalize(aoi)} District</h1>
+                <h1 className='report__title'>{upperFirst(aoi)} District</h1>
                 <ul className='report__meta'>
-                  <li>{capitalize(country)}</li>
+                  <li>{upperFirst(country)}</li>
                   <li>Est. Population {estimatePopulation.format('0,0')}</li>
                 </ul>
               </div>
