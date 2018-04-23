@@ -1,6 +1,7 @@
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import React from 'react';
+import upperFirst from 'lodash.upperfirst';
 
 export default ({boundaries, handleChange}) => {
   let options = [];
@@ -8,7 +9,7 @@ export default ({boundaries, handleChange}) => {
   if (boundaries.length > 0) {
     options = boundaries.map(fc => {
       const {name, id, country} = fc.properties;
-      return { value: `${country}/${id}`, label: `${country} - ${name}` };
+      return { value: `${country}/${id}`, label: `${upperFirst(country)} - ${name}` };
     });
   }
 

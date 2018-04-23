@@ -6,6 +6,7 @@ import ReportEditsChart from '../components/ReportEditsChart';
 import {requestBoundary} from '../state/ReportState';
 import numeral from 'numeral';
 import {format} from 'date-fns';
+import upperFirst from 'lodash.upperfirst';
 
 class Report extends Component {
   constructor (props) {
@@ -17,8 +18,6 @@ class Report extends Component {
   render() {
     const { country, aoi } = this.props.match.params;
     const { boundaries, stats, domain } = this.props;
-
-    const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1); 
 
     let layer = null;
     if (boundaries.length > 0) {
@@ -71,9 +70,9 @@ class Report extends Component {
                 <button className='button button--small button--base-bounded'>Download Report</button>
               </div>
               <div className='report__header'>
-                <h1 className='report__title'>{capitalize(aoi)} District</h1>
+                <h1 className='report__title'>{upperFirst(aoi)} District</h1>
                 <ul className='report__meta'>
-                  <li>{capitalize(country)}</li>
+                  <li>{upperFirst(country)}</li>
                   <li>Est. Population {estimatePopulation.format('0,0')}</li>
                 </ul>
               </div>
@@ -108,7 +107,7 @@ class Report extends Component {
                   </div>
                   <div className='report__section-body'>
                     <ul className='stat-list'>
-                      <li>{numberDuplicates.format('0,0')}<small>duplicated buildings</small></li>
+                      <li>{numberDuplicates.format('0,0')}<small>duplicate buildings</small></li>
                    </ul>
                   </div>
                 </div>
@@ -124,10 +123,10 @@ class Report extends Component {
           <li><Link to="/" className='button button--small button--primary-filled'>All AOIS</Link></li>
         </ul>
         <div className='map__legend'>
-          <p className='legend-label'>Date of OSM edit</p>
+          <p className='legend-label'>OSM Edit Recency</p>
           <div className='legend-bar legend-bar-osm'></div>
           <div className='color-scale__container'>
-            <p className='legend-label'>Completeness of Map</p>
+            <p className='legend-label'>Map Completeness</p>
             <ul className='color-scale'>
               <li className='color-scale__item'></li>
               <li className='color-scale__item'></li>
@@ -139,8 +138,8 @@ class Report extends Component {
               <li className='color-scale__item'></li>
             </ul>
             <div className='scale-labels'>
-              <p className='scale-number less'>Less Mapped</p>
-              <p className='scale-number more'>More Mapped</p>
+              <p className='scale-number less'>poor</p>
+              <p className='scale-number more'>good</p>
             </div>
           </div>
         </div>

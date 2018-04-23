@@ -9,6 +9,7 @@
     "d3-scale": "^2.0.0",
     "d3-scale-chromatic": "^1.2.0",
     "date-fns": "^1.29.0",
+    "lodash.upperfirst": "^4.3.1",
     "mapbox-gl": "^0.44.2",
     "numeral": "^2.0.6",
     "react": "^16.2.0",
