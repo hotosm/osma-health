@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BarChart, Bar, CartesianGrid, XAxis, Tooltip} from 'recharts';
+import {ResponsiveContainer, BarChart, Bar, CartesianGrid, XAxis, Tooltip} from 'recharts';
 import {subMonths, format} from 'date-fns';
 import numeral from 'numeral';
 
@@ -22,7 +22,7 @@ const CustomTooltip = ({active, payload}) => {
     display: 'block',
     paddingTop: 4,
     paddingBottom: 4,
-    color: '#8884d8',
+    color: '#000',
   };
 
   if (active) {
@@ -66,12 +66,14 @@ export default class ReportsEditsChart extends Component {
     });
 
     return (
-      <BarChart height={300} width={600} data={data}>
-        <Tooltip isAnimationActive={false} content={<CustomTooltip/>}/>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" />
-        <Bar dataKey="edits" fill="#8884d8" fillOpacity={0.5} />
-      </BarChart>
+      <ResponsiveContainer width="100%" height={200}>
+        <BarChart data={data}>
+          <Tooltip isAnimationActive={false} cursor={{ fill: 'none', stroke: '#F3C983', strokeWidth: 1 }} content={<CustomTooltip/>}/>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <Bar dataKey="edits" fill="#FFF" fillOpacity={0.9} />
+        </BarChart>
+      </ResponsiveContainer>
     )
   }
 }

@@ -235,6 +235,18 @@
   }
 }
 
+.button--info {
+  position: relative;
+  &:before {
+    content: url(../../graphics/icons/circle-information.svg);
+    position: absolute;
+    height: 1rem;
+    margin-left: 0.25rem;
+    margin-top: 0.25rem;
+    left: 0;
+  }  
+}
+
 /* ==========================================================================
    Button groups
    ========================================================================== */

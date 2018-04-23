@@ -61,7 +61,8 @@ class Report extends Component {
             <div className='report__panel'>
             <div className='report__status report__status--good'>
               <div className='inner'>
-                <p> AOI OSM Data Status: Good </p>
+                <p> AOI Relative Completeness: Good </p>
+                <button className='button button--info'></button>
               </div>
             </div>
             <div className='inner'>
@@ -79,15 +80,10 @@ class Report extends Component {
               <div className='report__body'>
                 <div className='report__section'>
                   <div className='report__section-header'>
-                    <h2 className='report__section-title'>Relative Completeness</h2>
-                  </div>
-                </div>
-                <div className='report__section'>
-                  <div className='report__section-header'>
                     <h2 className='report__section-title'>Attribute Completeness</h2>
                   </div>
                   <div className='report__section-body'>
-                    <p><strong>{numberBuildings.format('0,0')} </strong><small>OSM buildings in this AOI</small></p>
+                    <p>{numberBuildings.format('0,0')}<small>OSM buildings in this AOI</small></p>
                     <ul className='stat-list'>
                       <li>{numberUntaggedWays.format('0,0')}<small>untagged closeways</small></li>
                       <li>{percentResidentialBuildings.format('0%')}<small>residential buildings</small></li>
@@ -98,6 +94,8 @@ class Report extends Component {
                 <div className='report__section'>
                   <div className='report__section-header'>
                     <h2 className='report__section-title'>Temporal Accuracy</h2>
+                  </div>
+                  <div className='report__section-body'>
                     <ReportEditsChart timeBins={timeBins} />
                   </div>
                 </div>

@@ -72,6 +72,14 @@
   @include column(6/12);
   top: 0;
   bottom: 0;
+  transition: left 0.75s ease-in-out;
+}
+
+.report__panel-container--closed {
+  left: -46%;
+}
+
+.report__panel-container--open {
   left: 0;
 }
 
@@ -117,6 +125,7 @@
   }
   button {
     float: right;
+    display: none;
   }
 }
 
@@ -153,6 +162,9 @@
 .report__section {
   @extend .clearfix;
   margin: $global-spacing 0;
+  &:last-child {
+    margin-bottom: 4rem;
+  }
 }
 
 .report__section-header {
@@ -170,14 +182,20 @@
 
 .report__section-body {
   margin-top: $global-spacing;
-  float: left;
+  position: relative;
   .stat-list {
     li {
       @include column(4/12);
     }
   }
   p {
+    font-size: 1.15rem;
     margin-bottom: $global-spacing;
+    small {
+      opacity: 0.7;
+      font-weight: 300;
+      margin-left: $global-spacing/2;
+    }
   }
 }
 
@@ -193,6 +211,10 @@
     font-weight: $base-font-bold;
     font-size: 0.75rem;
     text-transform: uppercase;
+    float: left;
+  }
+  button {
+    float: right;
   }
 }
 
