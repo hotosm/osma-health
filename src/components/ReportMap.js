@@ -24,7 +24,7 @@ export default class ReportMap extends Component {
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
       style: 'mapbox://styles/mapbox/light-v9',
-      zoom: 12,
+      zoom: 9,
       center
     });
 
