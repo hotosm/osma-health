@@ -107,7 +107,7 @@ class Report extends Component {
                   </div>
                   <div className='report__section-body'>
                     <ul className='stat-list'>
-                      <li>{numberDuplicates.format('0,0')}<small>duplicated buildings</small></li>
+                      <li>{numberDuplicates.format('0,0')}<small>duplicate buildings</small></li>
                    </ul>
                   </div>
                 </div>
@@ -123,10 +123,10 @@ class Report extends Component {
           <li><Link to="/" className='button button--small button--primary-filled'>All AOIS</Link></li>
         </ul>
         <div className='map__legend'>
-          <p className='legend-label'>Date of OSM edit</p>
+          <p className='legend-label'>OSM Edit Recency</p>
           <div className='legend-bar legend-bar-osm'></div>
           <div className='color-scale__container'>
-            <p className='legend-label'>Completeness of Map</p>
+            <p className='legend-label'>Map Completeness</p>
             <ul className='color-scale'>
               <li className='color-scale__item'></li>
               <li className='color-scale__item'></li>
@@ -138,8 +138,8 @@ class Report extends Component {
               <li className='color-scale__item'></li>
             </ul>
             <div className='scale-labels'>
-              <p className='scale-number less'>Less Mapped</p>
-              <p className='scale-number more'>More Mapped</p>
+              <p className='scale-number less'>poor</p>
+              <p className='scale-number more'>good</p>
             </div>
           </div>
         </div>
