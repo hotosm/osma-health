@@ -41,7 +41,6 @@ class Report extends Component {
       population
 
     } = stats['building-stats'];
-    console.log(stats);
 
     const timestamp = stats.timestamp;
     const timeBins = stats['time-bins'];
