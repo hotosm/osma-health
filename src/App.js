@@ -6,7 +6,7 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 /* Views */
 import Report from './views/Report';
 import Home from './views/Home';
-
+import About from './views/About';
 class App extends Component {
 
   componentWillMount () {
@@ -25,12 +25,13 @@ class App extends Component {
               </div>
               <nav className='page__nav'>
                 <ul className='nav__menu'>
-                  <li>About</li>
+                  <a href='/#/about'><li>About</li></a>
                 </ul>
               </nav>
             </div>
           </header>
            <Route exact path="/" component={Home} />
+           <Route exact path="/about" component={About} />
            <Route path="/:country/:aoi" component={Report} /> 
         </div>
       </Router>
