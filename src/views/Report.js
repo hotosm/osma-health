@@ -75,7 +75,7 @@ class Report extends Component {
               <div className='inner'>
                 <p> AOI Relative Completeness: Good </p>
                 <button className='button button--info'>
-                <img alt='information' src={infoIcon}/>
+                <img alt='information' height='16' width='16' src={infoIcon}/>
                   <div className="info-text"><span>OSM coverage is great, better than population density would imply
 </span></div>
                 </button>
