@@ -1,0 +1,22 @@
+.recharts-wrapper {
+	width: 100% !important;
+}
+
+.recharts-cartesian-axis-tick text {
+  font-size: 0.75rem;
+  fill: #FFF;
+}
+
+.recharts-cartesian-grid {
+  opacity: 0;
+}
+
+.recharts-tooltip-wrapper {
+  visibility: visible !important;
+}
+
+.custom-tooltip-item {
+  span {
+    font-size: 0.875rem;
+  }
+}

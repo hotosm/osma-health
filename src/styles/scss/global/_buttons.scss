@@ -235,6 +235,33 @@
   }
 }
 
+.button--info {
+    padding-bottom: 0;
+    float: right;
+    margin-top: 0.35rem;
+  .info-text {
+    visibility: hidden;
+    background-color: #FFF;
+    color: $primary-color;
+    font-size: 0.75rem;
+    font-weight: $base-font-light;
+    font-style: italic;
+    position: absolute;
+    border-radius: $global-spacing/4;
+    z-index: 5;
+    padding: ($global-spacing/4) ($global-spacing/2);
+    margin-left: $global-spacing/4;
+    span {
+      width: 50%;
+      word-break: break-all;
+    }
+  } 
+}
+
+.button--info:hover .info-text {
+    visibility: visible;
+}
+
 /* ==========================================================================
    Button groups
    ========================================================================== */

@@ -7,12 +7,23 @@ import {requestBoundary} from '../state/ReportState';
 import numeral from 'numeral';
 import {format} from 'date-fns';
 import upperFirst from 'lodash.upperfirst';
+import infoIcon from '../graphics/icons/circle-information.svg';
 
 class Report extends Component {
   constructor (props) {
     super(props); 
     const { country, aoi } = this.props.match.params;
+    this.state = {
+      panelOpen: true
+    }
     this.props.getStats(country, aoi);
+    this.togglePanel = this.togglePanel.bind(this);
+  }
+
+  togglePanel () {
+    this.setState({
+      panelOpen: !this.state.panelOpen
+    });
   }
 
   render() {
@@ -29,7 +40,7 @@ class Report extends Component {
       })[0];
     }
 
-    if (!stats || !domain) return <div></div>; //FIXME Should return loading indicator
+    if (!stats || !domain || !layer) return <div></div>; //FIXME Should return loading indicator
     
     const {
       buildingResidential, 
@@ -48,8 +59,9 @@ class Report extends Component {
     const numberUntaggedWays = numeral(untaggedWays);
     const numberBuildings = numeral(totalBuildings);
     const numberResidential = numeral(buildingResidential);
-    const percentResidentialBuildings = numeral(numberResidential / numberBuildings);
-    const percentCompleteBuildings = numeral((numberResidential - numeral(buildingResidentialIncomplete))/ numberBuildings);
+    const numberBuildingResidentialIncomplete = numeral(buildingResidentialIncomplete)
+    const percentResidentialBuildings = numeral(numberResidential.value() / numberBuildings.value());
+    const percentCompleteBuildings = numeral((numberResidential.value() - numberBuildingResidentialIncomplete.value()) / numberBuildings.value());
     const numberDuplicates = numeral(duplicateCount);
     const estimatePopulation = numeral(population)
 
@@ -57,11 +69,16 @@ class Report extends Component {
       <section className='page__body'>
         <div className='map'>
           {<ReportMap aoi={layer} domain={domain}/>}
-          <div className='report__panel-container'>
+          <div className={`report__panel-container ${this.state.panelOpen? 'report__panel-container--open' : 'report__panel-container--closed'}`}>
             <div className='report__panel'>
             <div className='report__status report__status--good'>
               <div className='inner'>
-                <p> AOI OSM Data Status: Good </p>
+                <p> AOI Relative Completeness: Good </p>
+                <button className='button button--info'>
+                <img alt='information' src={infoIcon}/>
+                  <div className="info-text"><span>OSM coverage is great, better than population density would imply
+</span></div>
+                </button>
               </div>
             </div>
             <div className='inner'>
@@ -79,25 +96,22 @@ class Report extends Component {
               <div className='report__body'>
                 <div className='report__section'>
                   <div className='report__section-header'>
-                    <h2 className='report__section-title'>Relative Completeness</h2>
-                  </div>
-                </div>
-                <div className='report__section'>
-                  <div className='report__section-header'>
                     <h2 className='report__section-title'>Attribute Completeness</h2>
                   </div>
                   <div className='report__section-body'>
-                    <p><strong>{numberBuildings.format('0,0')} </strong><small>OSM buildings in this AOI</small></p>
+                    <p>{numberBuildings.format('0,0')}<small>OSM buildings in this AOI</small></p>
                     <ul className='stat-list'>
                       <li>{numberUntaggedWays.format('0,0')}<small>untagged closeways</small></li>
-                      <li>{percentResidentialBuildings.format('0%')}<small>residential buildings</small></li>
-                      <li>{percentCompleteBuildings.format('0%')}<small>residential buildings with roof and wall tags</small></li>
+                      <li>{percentResidentialBuildings.format('0.00%')}<small>residential buildings</small></li>
+                      <li>{percentCompleteBuildings.format('0.00%')}<small>residential buildings with roof and wall tags</small></li>
                     </ul>
                   </div>
                 </div>
                 <div className='report__section'>
                   <div className='report__section-header'>
                     <h2 className='report__section-title'>Temporal Accuracy</h2>
+                  </div>
+                  <div className='report__section-body'>
                     <ReportEditsChart timeBins={timeBins} />
                   </div>
                 </div>
@@ -114,8 +128,8 @@ class Report extends Component {
               </div>
             </div>
           </div>
-          <div className='report__panel-button'>
-            <button className='button button--slide-close'></button>
+          <div className='report__panel-button' >
+            <button className={`button ${this.state.panelOpen? 'button--slide-close':'button--slide-open'}`} onClick={this.togglePanel} />
           </div>
           </div>
         </div>
