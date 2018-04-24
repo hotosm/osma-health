@@ -129,7 +129,7 @@ class Report extends Component {
             </div>
           </div>
           <div className='report__panel-button' >
-            <button className='button button--slide-close' onClick={this.togglePanel} />
+            <button className={`button ${this.state.panelOpen? 'button--slide-close':'button--slide-open'}`} onClick={this.togglePanel} />
           </div>
           </div>
         </div>
