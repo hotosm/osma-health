@@ -1,0 +1,29 @@
+.about-page {
+  @include column(12/12);
+  background-color: rgba($primary-color, 0.05);
+}
+
+.section__body {
+	@include column(12/12);
+  p {
+    width: 80%;
+  }
+  h3, h2{
+    padding: ($global-spacing * 2) 0 ($global-spacing * 1) 0;
+  }
+  a {
+    text-decoration: underline;
+  }
+  ul {
+    margin: $global-spacing;
+  }
+}
+
+.section__header {
+  @include column(12/12);
+  margin-top: $global-spacing * 2;
+  h2{
+    padding: ($global-spacing * 2) 0 ($global-spacing * 1) 0;
+  }
+}
+
