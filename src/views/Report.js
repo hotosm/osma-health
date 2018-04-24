@@ -1,29 +1,20 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ReportMap from '../components/ReportMap';
 import ReportEditsChart from '../components/ReportEditsChart';
-import {requestBoundary} from '../state/ReportState';
+import PanelContainer from '../components/PanelContainer';
+import { requestBoundary } from '../state/ReportState';
 import numeral from 'numeral';
-import {format} from 'date-fns';
+import { format } from 'date-fns';
 import upperFirst from 'lodash.upperfirst';
 import infoIcon from '../graphics/icons/circle-information.svg';
 
 class Report extends Component {
-  constructor (props) {
-    super(props); 
+  constructor(props) {
+    super(props);
     const { country, aoi } = this.props.match.params;
-    this.state = {
-      panelOpen: true
-    }
     this.props.getStats(country, aoi);
-    this.togglePanel = this.togglePanel.bind(this);
-  }
-
-  togglePanel () {
-    this.setState({
-      panelOpen: !this.state.panelOpen
-    });
   }
 
   render() {
@@ -34,16 +25,16 @@ class Report extends Component {
     if (boundaries.length > 0) {
       layer = boundaries.filter(bnd => {
         return (
-          bnd.properties.country === country && 
+          bnd.properties.country === country &&
           bnd.properties.id === aoi
         );
       })[0];
     }
 
     if (!stats || !domain || !layer) return <div></div>; //FIXME Should return loading indicator
-    
+
     const {
-      buildingResidential, 
+      buildingResidential,
       buildingResidentialIncomplete,
       duplicateCount,
       totalBuildings,
@@ -68,70 +59,67 @@ class Report extends Component {
     return (
       <section className='page__body'>
         <div className='map'>
-          {<ReportMap aoi={layer} domain={domain}/>}
-          <div className={`report__panel-container ${this.state.panelOpen? 'report__panel-container--open' : 'report__panel-container--closed'}`}>
+          {<ReportMap aoi={layer} domain={domain} />}
+          <PanelContainer>
             <div className='report__panel'>
-            <div className='report__status report__status--good'>
+              <div className='report__status report__status--good'>
               <div className='inner'>
                 <p> AOI Relative Completeness: Good </p>
                 <button className='button button--info'>
                 <img alt='information' height='16' width='16' src={infoIcon}/>
                   <div className="info-text"><span>OSM coverage is great, better than population density would imply
 </span></div>
-                </button>
+                  </button>
+                </div>
+              </div>
+              <div className='inner'>
+                <div className='report__actions'>
+                  <p className='note'>Report last updated {format(timestamp, 'MMM. D, YYYY')}</p>
+                  <button className='button button--small button--base-bounded'>Download Report</button>
+                </div>
+                <div className='report__header'>
+                  <h1 className='report__title'>{upperFirst(aoi)} District</h1>
+                  <ul className='report__meta'>
+                    <li>{upperFirst(country)}</li>
+                    <li>Est. Population {estimatePopulation.format('0,0')}</li>
+                  </ul>
+                </div>
+                <div className='report__body'>
+                  <div className='report__section'>
+                    <div className='report__section-header'>
+                      <h2 className='report__section-title'>Attribute Completeness</h2>
+                    </div>
+                    <div className='report__section-body'>
+                      <p>{numberBuildings.format('0,0')}<small>OSM buildings in this AOI</small></p>
+                      <ul className='stat-list'>
+                        <li>{numberUntaggedWays.format('0,0')}<small>untagged closeways</small></li>
+                        <li>{percentResidentialBuildings.format('0.00%')}<small>residential buildings</small></li>
+                        <li>{percentCompleteBuildings.format('0.00%')}<small>residential buildings with roof and wall tags</small></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className='report__section'>
+                    <div className='report__section-header'>
+                      <h2 className='report__section-title'>Temporal Accuracy</h2>
+                    </div>
+                    <div className='report__section-body'>
+                      <ReportEditsChart timeBins={timeBins} />
+                    </div>
+                  </div>
+                  <div className='report__section'>
+                    <div className='report__section-header'>
+                      <h2 className='report__section-title'>Data Errors</h2>
+                    </div>
+                    <div className='report__section-body'>
+                      <ul className='stat-list'>
+                        <li>{numberDuplicates.format('0,0')}<small>duplicate buildings</small></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className='inner'>
-              <div className='report__actions'>
-                <p className='note'>Report last updated {format(timestamp, 'MMM. D, YYYY')}</p>
-                <button className='button button--small button--base-bounded'>Download Report</button>
-              </div>
-              <div className='report__header'>
-                <h1 className='report__title'>{upperFirst(aoi)} District</h1>
-                <ul className='report__meta'>
-                  <li>{upperFirst(country)}</li>
-                  <li>Est. Population {estimatePopulation.format('0,0')}</li>
-                </ul>
-              </div>
-              <div className='report__body'>
-                <div className='report__section'>
-                  <div className='report__section-header'>
-                    <h2 className='report__section-title'>Attribute Completeness</h2>
-                  </div>
-                  <div className='report__section-body'>
-                    <p>{numberBuildings.format('0,0')}<small>OSM buildings in this AOI</small></p>
-                    <ul className='stat-list'>
-                      <li>{numberUntaggedWays.format('0,0')}<small>untagged closeways</small></li>
-                      <li>{percentResidentialBuildings.format('0.00%')}<small>residential buildings</small></li>
-                      <li>{percentCompleteBuildings.format('0.00%')}<small>residential buildings with roof and wall tags</small></li>
-                    </ul>
-                  </div>
-                </div>
-                <div className='report__section'>
-                  <div className='report__section-header'>
-                    <h2 className='report__section-title'>Temporal Accuracy</h2>
-                  </div>
-                  <div className='report__section-body'>
-                    <ReportEditsChart timeBins={timeBins} />
-                  </div>
-                </div>
-                <div className='report__section'>
-                  <div className='report__section-header'>
-                    <h2 className='report__section-title'>Data Errors</h2>
-                  </div>
-                  <div className='report__section-body'>
-                    <ul className='stat-list'>
-                      <li>{numberDuplicates.format('0,0')}<small>duplicate buildings</small></li>
-                   </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='report__panel-button' >
-            <button className={`button ${this.state.panelOpen? 'button--slide-close':'button--slide-open'}`} onClick={this.togglePanel} />
-          </div>
-          </div>
+          </PanelContainer>
         </div>
         <ul className='map__actions button--group'>
           <li><Link to="/" className='button button--small button--primary-filled'>All AOIS</Link></li>

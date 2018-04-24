@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomeMap from '../components/HomeMap';
 import HomeSelect from '../components/HomeSelect';
+import PanelContainer from '../components/PanelContainer';
 
 class Home extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      panelOpen: true
+    }
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -24,7 +28,7 @@ class Home extends Component {
       <section className='page__body'>
         <div className='map'>
           <HomeMap boundaries={boundaries} />
-          <div className='panel-container'>
+          <PanelContainer>
             <div className='panel'>
               <div className='inner'>
                 <div className='panel__header'>
@@ -44,10 +48,7 @@ class Home extends Component {
                 </div>
               </div>
             </div>
-            <div className='panel-button'>
-              <button className='button button--slide-close'></button>
-            </div>
-          </div>
+          </PanelContainer>
         </div>
       </section >
     );
