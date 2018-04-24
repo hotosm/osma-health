@@ -31,13 +31,13 @@ class Home extends Component {
                   <h1 className='panel__title'>HOT Analytics for Health</h1>
                   <p className='panel__description'>HOT Analytics for Health is focussed on helping measure progress and quality of map data of Malaria campaigns.</p>
                   <p className='panel__description'>
-                    The report focuses on attribute completeness, edit recency, map completeness relative to population, and data errors like duplicate buildings and invalid geometries. Select an area of interest to see and download the report.
+                    The report focuses on attribute completeness, edit recency, map completeness relative to population, and data errors like duplicate buildings and invalid geometries.
                   </p>
                 </div>
                 <div className='panel__body'>
                   <div className='panel__section'>
                     <div className='panel__form'>
-                      <p className='form__label'></p>
+                      <p className='form__label'>Select an area of interest to see the report.</p>
                       <HomeSelect boundaries={boundaries} handleChange={this.handleChange} />
                     </div>
                   </div>
