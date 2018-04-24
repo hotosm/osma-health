@@ -12,7 +12,17 @@ class Report extends Component {
   constructor (props) {
     super(props); 
     const { country, aoi } = this.props.match.params;
+    this.state = {
+      panelOpen: true
+    }
     this.props.getStats(country, aoi);
+    this.togglePanel = this.togglePanel.bind(this);
+  }
+
+  togglePanel () {
+    this.setState({
+      panelOpen: !this.state.panelOpen
+    });
   }
 
   render() {
@@ -58,7 +68,7 @@ class Report extends Component {
       <section className='page__body'>
         <div className='map'>
           {<ReportMap aoi={layer} domain={domain}/>}
-          <div className='report__panel-container'>
+          <div className={`report__panel-container ${this.state.panelOpen? 'report__panel-container--open' : 'report__panel-container--closed'}`}>
             <div className='report__panel'>
             <div className='report__status report__status--good'>
               <div className='inner'>
@@ -113,8 +123,8 @@ class Report extends Component {
               </div>
             </div>
           </div>
-          <div className='report__panel-button'>
-            <button className='button button--slide-close'></button>
+          <div className='report__panel-button' >
+            <button className='button button--slide-close' onClick={this.togglePanel} />
           </div>
           </div>
         </div>
