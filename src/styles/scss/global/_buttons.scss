@@ -215,6 +215,7 @@
 
 .button--slide-open {
   position: relative;
+  padding: 2rem 0;
   &:before {
     content: url(../../graphics/icons/chevron-right.svg);
     position: absolute;
@@ -223,11 +224,13 @@
     margin-left: 0.25rem;
     margin-top: 0.25rem;
     left: 0;
+    top: 1rem;
   }
 }
 
 .button--slide-close {
   position: relative;
+  padding: 2rem 0;
   &:before {
     content: url(../../graphics/icons/chevron-left.svg);
     position: absolute;
@@ -236,6 +239,7 @@
     margin-left: 0.25rem;
     margin-top: 0.25rem;
     left: 0;
+    top: 1rem;
   }
 }
 
