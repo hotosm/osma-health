@@ -7,6 +7,7 @@ import {requestBoundary} from '../state/ReportState';
 import numeral from 'numeral';
 import {format} from 'date-fns';
 import upperFirst from 'lodash.upperfirst';
+import infoIcon from '../graphics/icons/circle-information.svg';
 
 class Report extends Component {
   constructor (props) {
@@ -73,7 +74,11 @@ class Report extends Component {
             <div className='report__status report__status--good'>
               <div className='inner'>
                 <p> AOI Relative Completeness: Good </p>
-                <button className='button button--info'></button>
+                <button className='button button--info'>
+                <img src={infoIcon}/>
+                  <div className="info-text"><span>OSM coverage is great, better than population density would imply
+</span></div>
+                </button>
               </div>
             </div>
             <div className='inner'>

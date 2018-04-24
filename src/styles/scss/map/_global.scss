@@ -72,7 +72,7 @@
   @include column(6/12);
   top: 0;
   bottom: 0;
-  transition: left 0.75s ease-in-out;
+  transition: left 0.5s ease-in-out;
 }
 
 .report__panel-container--closed {
@@ -94,18 +94,11 @@
 
 .report__panel {
   color: #FFF;
-  position: relative;
   height: 90vh;
   width: 95%;
   float: left;
   background: linear-gradient(to bottom, rgba(52,71,98,0.8) 0%,rgba(38,35,35,0.8) 100%);
   overflow: auto;
-  .inner {
-    position: relative;
-    overflow: scroll;
-    -ms-overflow-style: none;
-    overflow: -moz-scrollbars-none;
-  }
   .inner::-webkit-scrollbar { 
     display: none; 
   }

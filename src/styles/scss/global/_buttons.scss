@@ -236,15 +236,30 @@
 }
 
 .button--info {
-  position: relative;
-  &:before {
-    content: url(../../graphics/icons/circle-information.svg);
+    padding-bottom: 0;
+    float: right;
+    margin-top: 0.35rem;
+  .info-text {
+    visibility: hidden;
+    background-color: #FFF;
+    color: $primary-color;
+    font-size: 0.75rem;
+    font-weight: $base-font-light;
+    font-style: italic;
     position: absolute;
-    height: 1rem;
-    margin-left: 0.25rem;
-    margin-top: 0.25rem;
-    left: 0;
-  }  
+    border-radius: $global-spacing/4;
+    z-index: 5;
+    padding: ($global-spacing/4) ($global-spacing/2);
+    margin-left: $global-spacing/4;
+    span {
+      width: 50%;
+      word-break: break-all;
+    }
+  } 
+}
+
+.button--info:hover .info-text {
+    visibility: visible;
 }
 
 /* ==========================================================================
