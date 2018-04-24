@@ -218,6 +218,8 @@
   &:before {
     content: url(../../graphics/icons/chevron-right.svg);
     position: absolute;
+    height: 1rem;
+    width: 1rem;
     margin-left: 0.25rem;
     margin-top: 0.25rem;
     left: 0;
@@ -229,6 +231,8 @@
   &:before {
     content: url(../../graphics/icons/chevron-left.svg);
     position: absolute;
+    height: 1rem;
+    width: 1rem;
     margin-left: 0.25rem;
     margin-top: 0.25rem;
     left: 0;
