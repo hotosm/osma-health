@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import ReportMap from '../components/ReportMap';
 import ReportEditsChart from '../components/ReportEditsChart';
 import PanelContainer from '../components/PanelContainer';
+import CompletenessStatus from '../components/CompletenessStatus';
 import { requestBoundary } from '../state/ReportState';
 import numeral from 'numeral';
 import { format } from 'date-fns';
 import upperFirst from 'lodash.upperfirst';
-import infoIcon from '../graphics/icons/circle-information.svg';
 
 class Report extends Component {
   constructor(props) {
@@ -39,8 +39,8 @@ class Report extends Component {
       duplicateCount,
       totalBuildings,
       untaggedWays,
-      population
-
+      population,
+      completenessPercentage
     } = stats['building-stats'];
 
     const timestamp = stats.timestamp;
@@ -62,16 +62,8 @@ class Report extends Component {
           {<ReportMap aoi={layer} domain={domain} />}
           <PanelContainer>
             <div className='report__panel'>
-              <div className='report__status report__status--good'>
-              <div className='inner'>
-                <p> AOI Relative Completeness: Good </p>
-                <button className='button button--info'>
-                <img alt='information' height='16' width='16' src={infoIcon}/>
-                  <div className="info-text"><span>OSM coverage is great, better than population density would imply
-</span></div>
-                  </button>
-                </div>
-              </div>
+              <CompletenessStatus completenessPercentage={completenessPercentage} />
+
               <div className='inner'>
                 <div className='report__actions'>
                   <p className='note'>Report last updated {format(timestamp, 'MMM. D, YYYY')}</p>
