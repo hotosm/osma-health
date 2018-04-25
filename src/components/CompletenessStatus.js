@@ -7,15 +7,15 @@ const labels = {
     infoText: 'OSM building coverage is good relative to population density.',
     color: 'report__status--good'
   },
-  'average': {
-    statusText: 'Average',
+  'fair': {
+    statusText: 'Fair',
     infoText: 'OSM building coverage is average relative to population density.',
-    color: 'report__status--good'
+    color: 'report__status--fair'
   },
   'poor': {
     statusText: 'Poor',
     infoText: 'OSM building coverage is poor relative to population density.',
-    color: 'report__status--bad'
+    color: 'report__status--poor'
   }
 }
 

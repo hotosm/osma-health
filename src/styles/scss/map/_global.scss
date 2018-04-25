@@ -211,6 +211,36 @@
   }
 }
 
+.report__status--poor {
+  p {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: $global-spacing/1.5;
+      height: 12px;
+      width: 12px;
+      border-radius: 99999px;
+      background-color: #EB6856;
+    };
+  }
+}
+
+.report__status--fair {
+  p {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: $global-spacing/1.5;
+      height: 12px;
+      width: 12px;
+      border-radius: 99999px;
+      background-color: #FFF11A;
+    };
+  }
+}
+
 .report__status--good {
   p {
     &:before {
@@ -218,25 +248,10 @@
       position: absolute;
       left: 0;
       top: $global-spacing/1.5;
-      height: 10px;
-      width: 10px;
+      height: 12px;
+      width: 12px;
       border-radius: 99999px;
-      background-color: #40CA3B;
-    };
-  }
-}
-
-.report__status--bad {
-  p {
-    &:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: $global-spacing/1.5;
-      height: 10px;
-      width: 10px;
-      border-radius: 99999px;
-      background-color: #ca3b40;
+      background-color: #39CC31;
     };
   }
 }
