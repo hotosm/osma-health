@@ -3,29 +3,30 @@ import infoIcon from '../graphics/icons/circle-information.svg';
 
 const labels = {
   'good': {
-    statusText: 'Great',
-    infoText: 'OSM coverage is better than what population density would imply',
-    color: 'report__status--good'
-  },
-  'ok': {
     statusText: 'Good',
-    infoText: 'OSM coverage is similar to what population density would imply',
+    infoText: 'OSM building coverage is good relative to population density.',
     color: 'report__status--good'
   },
-  'bad': {
-    statusText: 'Bad',
-    infoText: 'OSM coverage is worse than what population density would imply',
+  'average': {
+    statusText: 'Average',
+    infoText: 'OSM building coverage is average relative to population density.',
+    color: 'report__status--good'
+  },
+  'poor': {
+    statusText: 'Poor',
+    infoText: 'OSM building coverage is poor relative to population density.',
     color: 'report__status--bad'
   }
 }
 
 export default ({ completenessPercentage }) => {
+  console.log('completeness', completenessPercentage);
   let status = 'good';
   if (completenessPercentage < 0.5) {
-    status = 'ok';
+    status = 'average';
   }
   if (completenessPercentage < -0.5) {
-    status = 'bad';
+    status = 'poor';
   } 
   const {infoText, statusText, color} = labels[status];
   
