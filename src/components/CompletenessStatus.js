@@ -9,7 +9,7 @@ const labels = {
   },
   'fair': {
     statusText: 'Fair',
-    infoText: 'OSM building coverage is average relative to population density.',
+    infoText: 'OSM building coverage is fair relative to population density.',
     color: 'report__status--fair'
   },
   'poor': {
@@ -22,7 +22,7 @@ const labels = {
 export default ({ completenessPercentage }) => {
   let status = 'good';
   if (completenessPercentage < 0.5) {
-    status = 'average';
+    status = 'fair';
   }
   if (completenessPercentage < -0.5) {
     status = 'poor';
