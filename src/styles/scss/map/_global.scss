@@ -226,6 +226,21 @@
   }
 }
 
+.report__status--bad {
+  p {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: $global-spacing/1.5;
+      height: 10px;
+      width: 10px;
+      border-radius: 99999px;
+      background-color: #ca3b40;
+    };
+  }
+}
+
 .color-scale__container {
   float: left;
   margin-top: $global-spacing * 2;
