@@ -43,3 +43,33 @@
   background: linear-gradient(to bottom, rgba(52,71,98,0.8) 0%,rgba(38,35,35,0.8) 100%);
   overflow: auto;
 }
+
+header {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background-color: rgba(255,255,255, 0.78);
+}
+
+header h1 {
+  display: inline-block;
+  font-size: 20px;
+  line-height: 52px;
+  vertical-align: text-bottom;
+  font-weight: normal;
+  color: #414141;
+}
+
+header ul {
+  display: inline-block;
+  vertical-align: text-bottom;
+  margin-bottom: 14px;
+  padding-left: 40px;
+  font-size: 16px;
+  list-style: none;
+}
+
+header .inner {
+  margin-left: unset;
+}
