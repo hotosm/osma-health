@@ -37,9 +37,35 @@
 .panel {
   color: #FFF;
   position: relative;
-  height: 90vh;
+  height: 92vh;
   width: 95%;
   float: left;
   background: linear-gradient(to bottom, rgba(52,71,98,0.8) 0%,rgba(38,35,35,0.8) 100%);
   overflow: auto;
+}
+
+header {
+  height: 8vh;
+  float: left;
+  width: 100%;
+  background-color: rgba(255,255,255, 0.78);
+  padding: 0.875rem 0 0 0;
+  box-shadow: 0px 0px 20px rgba(0,0,0, 0.5);
+  z-index: 5;
+  position: relative;
+}
+
+header h1 {
+  color: $primary-color;
+  font-size: 1.15rem;
+  line-height: 1.5rem;
+  float: left;
+}
+
+header ul {
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  list-style: none;
+  float: left;
+  margin-left: $global-spacing * 3;
 }
