@@ -194,7 +194,7 @@
 
 .report__status {
   width: 100%;
-  padding: ($global-spacing/2) 0; 
+  padding: ($global-spacing/2) 0 $global-spacing 0; 
   background-color: rgba(#FFF, 0.8);
   color: $primary-color;
   p {
