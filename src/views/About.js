@@ -4,11 +4,11 @@ class About extends Component {
     render() {
         return (
             <div className='about-page'>
-                <header className='section__header'>
+                <div className='section__header'>
                 	<div className='inner'>
                     <h2>HOT Analytics for Health</h2>
                    </div>
-                </header>
+                </div>
                 <section className='section__body'>
                     <div className='inner'>
                         <p>HOT Analytics for Health is one of the OSM Analytics projects focussed on data quality and mapping progress for Malaria campaigns. HOT Analytics for Health uses <a href='http://osmlab.github.io/osm-qa-tiles/' >OSM QA Tiles</a> and <a href='http://www.worldpop.org.uk/'>Worldpop</a> for analysis in the following areas:</p>

@@ -215,27 +215,35 @@
 
 .button--slide-open {
   position: relative;
+  padding: 2rem 0;
   &:before {
     content: url(../../graphics/icons/chevron-right.svg);
     position: absolute;
+    height: 1rem;
+    width: 1rem;
     margin-left: 0.25rem;
     margin-top: 0.25rem;
     height: 1rem;
     width: 1rem;
     left: 0;
+    top: 1rem;
   }
 }
 
 .button--slide-close {
   position: relative;
+  padding: 2rem 0;
   &:before {
     content: url(../../graphics/icons/chevron-left.svg);
     position: absolute;
+    height: 1rem;
+    width: 1rem;
     margin-left: 0.25rem;
     margin-top: 0.25rem;
     height: 1rem;
     width: 1rem;
     left: 0;
+    top: 1rem;
   }
 }
 

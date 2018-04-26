@@ -6,12 +6,13 @@ This repository will be the main ticket tracker, as well as the front-end code. 
 
 * [osma-health-infra](https://github.com/hotosm/osma-health-infra) - private infrastructure code.
 * [osma-health-workers](https://github.com/hotosm/osma-health-workers) - workers to prepare data for analysis.
+* [hotosm-population](https://github.com/azavea/hot-osm-population) - WorldPop based OSM data completeness estimates.
 * [osmlint](https://github.com/hotosm/osmlint) - fork of OSMLint with validators specific for this project.
 
 osma-health is being built by [Development Seed](https://developmentseed.org/).
 
 ## Setup
-_work in progress_
+The front-end is hosted on S3 bucket called `osma-health`. To deploy, merge a PR to master and CircleCI will automatically push a dist to S3.
 
 ## Background
 

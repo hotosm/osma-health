@@ -18,17 +18,13 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          <header className="page__header">
-            <div className='inner'>
-              <div className='page__headline'>
-                <h1 className='page__title heading--xsmall'><Link to="/">OSM Analytics for Health</Link></h1>
-              </div>
-              <nav className='page__nav'>
-                <ul className='nav__menu'>
-                  <a href='/#/about'><li>About</li></a>
-                </ul>
-              </nav>
-            </div>
+        <header className='header'>
+          <div className='inner'>
+            <h1><a href='/'>HOT Analytics for Health</a></h1>
+            <ul>
+              <li><a href='/#/about'>About</a></li>
+            </ul>
+          </div>
           </header>
            <Route exact path="/" component={Home} />
            <Route exact path="/about" component={About} />
