@@ -40,7 +40,8 @@ class Report extends Component {
       totalBuildings,
       untaggedWays,
       population,
-      completenessPercentage
+      completenessPercentage,
+      averageCompleteness
     } = stats['building-stats'];
 
     const timestamp = stats.timestamp;
@@ -62,7 +63,7 @@ class Report extends Component {
           {<ReportMap aoi={layer} domain={domain} />}
           <PanelContainer>
             <div className='report__panel'>
-              <CompletenessStatus completenessPercentage={completenessPercentage} />
+              <CompletenessStatus completenessPercentage={averageCompleteness} />
 
               <div className='inner'>
                 <div className='report__actions'>
