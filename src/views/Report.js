@@ -40,7 +40,6 @@ class Report extends Component {
       totalBuildings,
       untaggedWays,
       population,
-      completenessPercentage,
       averageCompleteness
     } = stats['building-stats'];
 

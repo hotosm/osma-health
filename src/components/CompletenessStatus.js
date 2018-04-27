@@ -20,7 +20,6 @@ const labels = {
 }
 
 export default ({ completenessPercentage }) => {
-  console.log(completenessPercentage);
   let status = 'good';
   if (completenessPercentage < 0.5) {
     status = 'fair';
