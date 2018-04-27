@@ -50,7 +50,7 @@ body {
 a {
   cursor: pointer;
   color: $link-color;
-  text-decoration: none;
+  text-decoration: underline;
   transition: opacity 0.24s ease 0s;
 }
 
@@ -119,7 +119,6 @@ a.link--secondary {
   }
 
   &--centered {
-    max-width: $row-max-width;
     margin-left: auto;
     margin-right: auto;
   }
