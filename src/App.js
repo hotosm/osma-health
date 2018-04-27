@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-        <header className='header'>
+        <header className='page__header'>
           <div className='inner'>
             <h1><a href='/'>HOT Analytics for Health</a></h1>
             <ul>
