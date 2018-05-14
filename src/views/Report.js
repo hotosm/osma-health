@@ -7,7 +7,7 @@ import PanelContainer from '../components/PanelContainer';
 import CompletenessStatus from '../components/CompletenessStatus';
 import { requestBoundary } from '../state/ReportState';
 import numeral from 'numeral';
-import { format } from 'date-fns';
+import { subMonths, format } from 'date-fns';
 import upperFirst from 'lodash.upperfirst';
 
 class Report extends Component {
@@ -56,6 +56,23 @@ class Report extends Component {
     const numberDuplicates = numeral(duplicateCount);
     const estimatePopulation = numeral(population)
 
+    // Calculate recent buildings
+    // Get only the bins in the past 6 months
+    const today = new Date();
+    let recentEditsFromTimeBins = 0;
+    let totalEditsFromTimeBins = 0;
+    for (let i = 0; i < 6; i++) {
+      const date = subMonths(today, i);
+      const key = format(date, 'YYYYMM');
+      if (timeBins[key]) {
+        recentEditsFromTimeBins += timeBins[key]
+      }
+    }
+    Object.values(timeBins).forEach(timebin => {
+      totalEditsFromTimeBins += timebin;
+    });
+    const percentRecentBuildings = numeral(recentEditsFromTimeBins / totalEditsFromTimeBins);
+
     return (
       <section className='page__body'>
         <div className='map'>
@@ -96,6 +113,9 @@ class Report extends Component {
                     </div>
                     <div className='report__section-body'>
                       <ReportEditsChart timeBins={timeBins} />
+                      <ul className='stat-list'>
+                        <li>{percentRecentBuildings.format('0.00%')}<small>buildings in the last 6 months</small></li>
+                      </ul>
                     </div>
                   </div>
                   <div className='report__section'>
