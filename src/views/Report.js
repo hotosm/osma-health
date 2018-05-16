@@ -114,10 +114,10 @@ class Report extends Component {
           </PanelContainer>
         </div>
         <ul className='map__actions button--group'>
-          <li><Link to="/" className='button button--small button--primary-filled'>All AOIS</Link></li>
+          <li><Link to="/" className='button button--small button--primary-filled'>Back to all AOIS</Link></li>
           {
             (layer.properties.hot_export ?
-              <li><a target="_blank" href={layer.properties.hot_export} className='button button--small button--primary-filled'>Export Data</a></li>
+              <li><a target="_blank" href={layer.properties.hot_export} className='button button--small button--primary-filled'>Export AOI Data</a></li>
               : <div style={{display: "none"}}></div>
             )
           }
