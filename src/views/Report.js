@@ -112,10 +112,11 @@ class Report extends Component {
                       <h2 className='report__section-title'>Temporal Accuracy</h2>
                     </div>
                     <div className='report__section-body'>
-                      <ReportEditsChart timeBins={timeBins} />
-                      <ul className='stat-list'>
-                        <li>{percentRecentBuildings.format('0.00%')}<small>buildings in the last 6 months</small></li>
+                      <ul className='stat-list-single'>
+                        <li>{percentRecentBuildings.format('0.00%')}<small>buildings edited in the last 6 months</small></li>
                       </ul>
+                      <h3 className='chart-title'>Buildings Edited by Month </h3>
+                      <ReportEditsChart timeBins={timeBins} />
                     </div>
                   </div>
                   <div className='report__section'>
