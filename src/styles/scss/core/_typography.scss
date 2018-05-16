@@ -434,7 +434,7 @@ mark, .mark {
   font-weight: $base-font-light;
 }
 
-.stat-list {
+.stat-list, .stat-list-single {
   list-style: none;
   li {
     display: inline-block;

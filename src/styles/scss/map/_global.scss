@@ -151,15 +151,21 @@
   }
 }
 
-.stat-list {
+.stat-list, .stat-list-single {
   margin-left: 0;
+  width: 100%;
+  float: left;
 }
 
 .report__section {
   @extend .clearfix;
-  margin: $global-spacing 0;
+  margin: ($global-spacing * 2) 0;
+  &:first-child {
+    margin-top: 0;
+  }
   &:last-child {
     margin-bottom: 4rem;
+    margin-top: 8rem;
   }
 }
 
@@ -167,7 +173,8 @@
   @extend .clearfix;
   border-bottom: solid 1px rgba($base-color, 0.1);
   h2 {
-    font-size: 1rem;
+    font-size: 1.15rem;
+    font-weight: $base-font-bold;
     float: left;
   }
   p {
@@ -182,6 +189,11 @@
   .stat-list {
     li {
       @include column(4/12);
+    }
+  }
+  .stat-list-single {
+    li {
+      @include column(12/12);
     }
   }
   p {
