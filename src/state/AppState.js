@@ -50,7 +50,7 @@ export default function AppState (state = initialState, action) {
     case COUNTRY_FETCH_SUCCEEDED:
       const countries = action.countries
       const features = Object.keys(countries).map(country => {
-        const features = countries[country].features;
+        const features = countries[country].boundaries.features;
         /**
          * Add the country back into the properties of each boundary
          */
