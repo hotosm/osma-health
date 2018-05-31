@@ -79,7 +79,6 @@ class Report extends Component {
           {<ReportMap aoi={layer} domain={domain} />}
           <PanelContainer>
             <div className='report__panel'>
-              <CompletenessStatus completenessPercentage={averageCompleteness} />
 
               <div className='inner'>
                 <div className='report__actions'>
@@ -87,16 +86,31 @@ class Report extends Component {
                   <button className='button button--small button--base-bounded'>Download Report</button>
                 </div>
                 <div className='report__header'>
+                  <h2 className='report__label'>Data Quality Report</h2>
                   <h1 className='report__title'>{upperFirst(aoi)} District</h1>
                   <ul className='report__meta'>
                     <li>{upperFirst(country)}</li>
                     <li>Est. Population {estimatePopulation.format('0,0')}</li>
                   </ul>
+                  <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
                 </div>
                 <div className='report__body'>
                   <div className='report__section'>
                     <div className='report__section-header'>
+                      <h3 className='section__number'>Section 1</h3>
+                      <h2 className='report__section-title'>Relative Completeness</h2>
+                      <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
+                    </div>
+                    <div className='report__section-body'>
+                      <CompletenessStatus completenessPercentage={averageCompleteness} />
+                    </div>
+                  </div>
+
+                  <div className='report__section'>
+                    <div className='report__section-header'>
+                      <h3 className='section__number'>Section 2</h3>
                       <h2 className='report__section-title'>Attribute Completeness</h2>
+                      <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
                     </div>
                     <div className='report__section-body'>
                       <p>{numberBuildings.format('0,0')}<small>OSM buildings in this AOI</small></p>
@@ -107,9 +121,12 @@ class Report extends Component {
                       </ul>
                     </div>
                   </div>
+
                   <div className='report__section'>
                     <div className='report__section-header'>
+                      <h3 className='section__number'>Section 3</h3>
                       <h2 className='report__section-title'>Temporal Accuracy</h2>
+                      <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
                     </div>
                     <div className='report__section-body'>
                       <ul className='stat-list-single'>
@@ -119,9 +136,12 @@ class Report extends Component {
                       <ReportEditsChart timeBins={timeBins} />
                     </div>
                   </div>
+
                   <div className='report__section'>
                     <div className='report__section-header'>
+                      <h3 className='section__number'>Section 4</h3>
                       <h2 className='report__section-title'>Data Errors</h2>
+                      <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
                     </div>
                     <div className='report__section-body'>
                       <ul className='stat-list'>
@@ -129,6 +149,20 @@ class Report extends Component {
                       </ul>
                     </div>
                   </div>
+
+                  <div className='report__section'>
+                    <div className='report__section-header'>
+                      <h3 className='section__number'>Section 5</h3>
+                      <h2 className='report__section-title'>Duplicative Data Errors</h2>
+                      <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
+                    </div>
+                    <div className='report__section-body'>
+                      <ul className='stat-list'>
+                        <li>{numberDuplicates.format('0,0')}<small>duplicate buildings</small></li>
+                      </ul>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
