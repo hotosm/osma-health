@@ -109,7 +109,7 @@ class Report extends Component {
                     <div className='report__section-header'>
                       <h3 className='section__number'>Section 1</h3>
                       <h2 className='report__section-title'>Relative Completeness</h2>
-                      <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
+                      <p className='report__section-description'>Distribution of buildings in OpenStreetMap compared population estimates from WorldPop.</p>
                     </div>
                     <div className='report__section-body'>
                       <CompletenessStatus completenessPercentage={averageCompleteness} />
@@ -120,7 +120,7 @@ class Report extends Component {
                     <div className='report__section-header'>
                       <h3 className='section__number'>Section 2</h3>
                       <h2 className='report__section-title'>Attribute Completeness</h2>
-                      <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
+                      <p className='report__section-description'>Metadata about use of building, roof and wall type. Using `buildings=residential`, `roof=*` and `wall=*` attributes. </p>
                     </div>
                     <div className='report__section-body'>
                       <p>{numberBuildings.format('0,0')}<small>OSM buildings in this AOI</small></p>
@@ -136,7 +136,7 @@ class Report extends Component {
                     <div className='report__section-header'>
                       <h3 className='section__number'>Section 3</h3>
                       <h2 className='report__section-title'>Temporal Accuracy</h2>
-                      <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
+                      <p className='report__section-description'>Recency of building data, and the distribution over the last few years.</p>
                     </div>
                     <div className='report__section-body'>
                       <ul className='stat-list'>
@@ -154,7 +154,7 @@ class Report extends Component {
                     <div className='report__section-header'>
                       <h3 className='section__number'>Section 4</h3>
                       <h2 className='report__section-title'>Data Errors</h2>
-                      <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
+                      <p className='report__section-description'>Buildings that are potentially overlapping causing overestimation.</p>
                     </div>
                     <div className='report__section-body'>
                       <ul className='stat-list'>
@@ -162,20 +162,6 @@ class Report extends Component {
                       </ul>
                     </div>
                   </div>
-
-                  <div className='report__section'>
-                    <div className='report__section-header'>
-                      <h3 className='section__number'>Section 5</h3>
-                      <h2 className='report__section-title'>Duplicative Data Errors</h2>
-                      <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
-                    </div>
-                    <div className='report__section-body'>
-                      <ul className='stat-list'>
-                        <li>{numberDuplicates.format('0,0')}<small>duplicate buildings</small></li>
-                      </ul>
-                    </div>
-                  </div>
-
                 </div>
               </div>
             </div>
