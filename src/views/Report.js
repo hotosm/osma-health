@@ -191,32 +191,32 @@ class Report extends Component {
           }
         </ul>
         <div className='map__legend'>
+          <div className='color-scale__container'>
+              <p className='legend-label'>Map Completeness</p>
+              <ul className='color-scale'>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+              </ul>
+              <div className='scale-labels'>
+                <p className='scale-number less'>poor</p>
+                <p className='scale-number more'>good</p>
+              </div>
+          </div>
         {
             (this.state.mapZoom > 11) ?
-            <div>
+            <div className='recency-scale__container'>
               <p className='legend-label'>OSM Edit Recency</p>
               <div className='legend-bar legend-bar-osm'></div>
             </div>
             : <div></div>
 
           }
-        <div className='color-scale__container'>
-            <p className='legend-label'>Map Completeness</p>
-            <ul className='color-scale'>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-            </ul>
-            <div className='scale-labels'>
-              <p className='scale-number less'>poor</p>
-              <p className='scale-number more'>good</p>
-            </div>
-          </div>
         </div>
       </section >
     );

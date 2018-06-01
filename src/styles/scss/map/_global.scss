@@ -295,8 +295,11 @@
 
 .color-scale__container {
   float: left;
-  margin-top: $global-spacing * 2;
   width: 100%;
+}
+
+.recency-scale__container {
+  padding-bottom: $global-spacing;
 }
 
 .color-scale {
