@@ -62,7 +62,8 @@ export function* reportSaga () {
 
 const initialState = {
   stats: null,
-  domain: null
+  domain: null,
+  zoom: null
 }
 
 /* Reducer */

@@ -14,7 +14,17 @@ class Report extends Component {
   constructor(props) {
     super(props);
     const { country, aoi } = this.props.match.params;
+    this.state = {
+      mapZoom: 9
+    }
     this.props.getStats(country, aoi);
+    this.onMapZoom = this.onMapZoom.bind(this);
+  }
+
+  onMapZoom (z) {
+    this.setState({
+      mapZoom: z
+    });
   }
 
   render() {
@@ -76,7 +86,7 @@ class Report extends Component {
     return (
       <section className='page__body'>
         <div className='map'>
-          {<ReportMap aoi={layer} domain={domain} />}
+          {<ReportMap aoi={layer} domain={domain} onZoom={this.onMapZoom} />}
           <PanelContainer>
             <div className='report__panel'>
 
@@ -178,9 +188,16 @@ class Report extends Component {
           }
         </ul>
         <div className='map__legend'>
-          <p className='legend-label'>OSM Edit Recency</p>
-          <div className='legend-bar legend-bar-osm'></div>
-          <div className='color-scale__container'>
+        {
+            (this.state.mapZoom > 11) ?
+            <div>
+              <p className='legend-label'>OSM Edit Recency</p>
+              <div className='legend-bar legend-bar-osm'></div>
+            </div>
+            : <div></div>
+
+          }
+        <div className='color-scale__container'>
             <p className='legend-label'>Map Completeness</p>
             <ul className='color-scale'>
               <li className='color-scale__item'></li>
