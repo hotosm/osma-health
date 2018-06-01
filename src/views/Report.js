@@ -139,11 +139,14 @@ class Report extends Component {
                       <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
                     </div>
                     <div className='report__section-body'>
-                      <ul className='stat-list-single'>
+                      <ul className='stat-list'>
                         <li>{percentRecentBuildings.format('0.00%')}<small>buildings edited in the last 6 months</small></li>
+                        <li className='section-button'><button className='button button--base-bounded'>Zoom to Buildings</button></li>
                       </ul>
-                      <h3 className='chart-title'>Buildings Edited by Month </h3>
-                      <ReportEditsChart timeBins={timeBins} />
+                      <div className='chart-container'>
+                        <h3 className='chart-title'>Buildings Edited by Month </h3>
+                        <ReportEditsChart timeBins={timeBins} />
+                      </div>
                     </div>
                   </div>
 
