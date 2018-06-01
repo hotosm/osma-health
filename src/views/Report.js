@@ -209,7 +209,7 @@ class Report extends Component {
               </div>
           </div>
         {
-            (this.state.mapZoom > 11) ?
+            (this.state.mapZoom > 12) ?
             <div className='recency-scale__container'>
               <p className='legend-label'>OSM Edit Recency</p>
               <div className='legend-bar legend-bar-osm'></div>
