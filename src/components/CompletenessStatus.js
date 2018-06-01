@@ -31,15 +31,7 @@ export default ({ completenessPercentage }) => {
   
   return (
     <div className={`report__status ${color}`}>
-      <div className='inner'>
-        <p> AOI Relative Completeness: {statusText}</p>
-        <button className='button button--info'>
-          <img alt='information' height='16' width='16' src={infoIcon} />
-          <div className="info-text">
-            <span>{infoText}</span>
-          </div>
-        </button>
-      </div>
+      <p> AOI Relative Completeness: {statusText}</p>
     </div>
   );
 

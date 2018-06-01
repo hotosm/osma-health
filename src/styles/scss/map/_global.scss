@@ -113,7 +113,6 @@
 
 .report__actions {
   @include column(12/12);
-  border-bottom: solid 1px rgba($base-color, 0.1);
   padding: $global-spacing 0;
   p {
     float: left;
@@ -127,7 +126,15 @@
 
 .report__header {
   @include column(12/12);
-  margin: ($global-spacing * 2) 0;
+  margin:($global-spacing) 0 ($global-spacing * 3) 0;
+  padding-bottom: $global-spacing * 4;
+  border-bottom: solid 1px rgba($base-color, 0.2);
+}
+
+.report__label {
+  color: $highlight-color;
+  text-transform: uppercase;
+  font-size: 1.15rem;
 }
 
 .report__body {
@@ -136,6 +143,7 @@
 
 .report__meta {
   margin-left: 0;
+  margin-bottom: $global-spacing;
   li {
     opacity: 0.7;
     font-size: 0.875rem;
@@ -160,27 +168,43 @@
 .report__section {
   @extend .clearfix;
   margin: ($global-spacing * 2) 0;
+  padding-bottom: $global-spacing * 2;
+  border-bottom: solid 1px rgba($base-color, 0.1);
   &:first-child {
     margin-top: 0;
   }
   &:last-child {
-    margin-bottom: 4rem;
-    margin-top: 8rem;
-  }
+    border-bottom: 0;
+  };
 }
+
 
 .report__section-header {
   @extend .clearfix;
-  border-bottom: solid 1px rgba($base-color, 0.1);
+  margin-bottom: $global-spacing * 2;
   h2 {
     font-size: 1.15rem;
     font-weight: $base-font-bold;
     float: left;
   }
   p {
-    float: right;
     margin-top: $global-spacing/2;
   }
+}
+
+.section__number {
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  line-height: 1rem;
+  color: $highlight-color;
+}
+
+.report__section-description {
+  font-weight: $base-font-light;
+  opacity: 0.8;
+  font-size: 0.875rem;
+  width: 85%;
+  float: left;
 }
 
 .report__section-body {
@@ -189,6 +213,10 @@
   .stat-list {
     li {
       @include column(4/12);
+    }
+    li.section-button {
+      margin-left: $global-spacing * 2;
+      font-size: 0.875rem;
     }
   }
   .stat-list-single {
@@ -208,10 +236,6 @@
 }
 
 .report__status {
-  width: 100%;
-  padding: ($global-spacing/2) 0 $global-spacing 0; 
-  background-color: rgba(#FFF, 0.8);
-  color: $primary-color;
   p {
     position: relative;
     padding-left: $global-spacing;
@@ -273,8 +297,11 @@
 
 .color-scale__container {
   float: left;
-  margin-top: $global-spacing * 2;
   width: 100%;
+}
+
+.recency-scale__container {
+  padding-bottom: $global-spacing;
 }
 
 .color-scale {

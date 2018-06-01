@@ -94,6 +94,11 @@ export default class ReportMap extends Component {
           },
       })
 
+      this.map.on('zoomend', () => {
+        const z = this.map.getZoom();
+        this.props.onZoom(z);
+      });
+
     });
   }
   componentWillUnmount(){

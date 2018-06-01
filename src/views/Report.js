@@ -14,7 +14,17 @@ class Report extends Component {
   constructor(props) {
     super(props);
     const { country, aoi } = this.props.match.params;
+    this.state = {
+      mapZoom: 9
+    }
     this.props.getStats(country, aoi);
+    this.onMapZoom = this.onMapZoom.bind(this);
+  }
+
+  onMapZoom (z) {
+    this.setState({
+      mapZoom: z
+    });
   }
 
   render() {
@@ -76,27 +86,40 @@ class Report extends Component {
     return (
       <section className='page__body'>
         <div className='map'>
-          {<ReportMap aoi={layer} domain={domain} />}
+          {<ReportMap aoi={layer} domain={domain} onZoom={this.onMapZoom} />}
           <PanelContainer>
             <div className='report__panel'>
-              <CompletenessStatus completenessPercentage={averageCompleteness} />
 
               <div className='inner'>
                 <div className='report__actions'>
-                  <p className='note'>Report last updated {format(timestamp, 'MMM. D, YYYY')}</p>
                   <button className='button button--small button--base-bounded'>Download Report</button>
                 </div>
                 <div className='report__header'>
+                  <h2 className='report__label'>Data Quality Report</h2>
                   <h1 className='report__title'>{upperFirst(aoi)} District</h1>
                   <ul className='report__meta'>
                     <li>{upperFirst(country)}</li>
                     <li>Est. Population {estimatePopulation.format('0,0')}</li>
                   </ul>
+                  <p className='report__section-description'>This report generated for the {upperFirst(aoi)} District was last updated on <span className='note'>{format(timestamp, 'MMM. D, YYYY')}.</span></p>
                 </div>
                 <div className='report__body'>
                   <div className='report__section'>
                     <div className='report__section-header'>
+                      <h3 className='section__number'>Section 1</h3>
+                      <h2 className='report__section-title'>Relative Completeness</h2>
+                      <p className='report__section-description'>Distribution of buildings in OpenStreetMap compared population estimates from WorldPop.</p>
+                    </div>
+                    <div className='report__section-body'>
+                      <CompletenessStatus completenessPercentage={averageCompleteness} />
+                    </div>
+                  </div>
+
+                  <div className='report__section'>
+                    <div className='report__section-header'>
+                      <h3 className='section__number'>Section 2</h3>
                       <h2 className='report__section-title'>Attribute Completeness</h2>
+                      <p className='report__section-description'>Metadata about use of building, roof and wall type. Using `buildings=residential`, `roof=*` and `wall=*` attributes. </p>
                     </div>
                     <div className='report__section-body'>
                       <p>{numberBuildings.format('0,0')}<small>OSM buildings in this AOI</small></p>
@@ -107,21 +130,30 @@ class Report extends Component {
                       </ul>
                     </div>
                   </div>
+
                   <div className='report__section'>
                     <div className='report__section-header'>
+                      <h3 className='section__number'>Section 3</h3>
                       <h2 className='report__section-title'>Temporal Accuracy</h2>
+                      <p className='report__section-description'>Recency of building data, and the distribution over the last few years.</p>
                     </div>
                     <div className='report__section-body'>
-                      <ul className='stat-list-single'>
+                      <ul className='stat-list'>
                         <li>{percentRecentBuildings.format('0.00%')}<small>buildings edited in the last 6 months</small></li>
+                        <li className='section-button note'>Zoom into map to see OSM buildings and edit recency.</li>
                       </ul>
-                      <h3 className='chart-title'>Buildings Edited by Month </h3>
-                      <ReportEditsChart timeBins={timeBins} />
+                      <div className='chart-container'>
+                        <h3 className='chart-title'>Buildings Edited by Month </h3>
+                        <ReportEditsChart timeBins={timeBins} />
+                      </div>
                     </div>
                   </div>
+
                   <div className='report__section'>
                     <div className='report__section-header'>
+                      <h3 className='section__number'>Section 4</h3>
                       <h2 className='report__section-title'>Data Errors</h2>
+                      <p className='report__section-description'>Buildings that are potentially overlapping causing overestimation.</p>
                     </div>
                     <div className='report__section-body'>
                       <ul className='stat-list'>
@@ -144,25 +176,32 @@ class Report extends Component {
           }
         </ul>
         <div className='map__legend'>
-          <p className='legend-label'>OSM Edit Recency</p>
-          <div className='legend-bar legend-bar-osm'></div>
           <div className='color-scale__container'>
-            <p className='legend-label'>Map Completeness</p>
-            <ul className='color-scale'>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-              <li className='color-scale__item'></li>
-            </ul>
-            <div className='scale-labels'>
-              <p className='scale-number less'>poor</p>
-              <p className='scale-number more'>good</p>
-            </div>
+              <p className='legend-label'>Map Completeness</p>
+              <ul className='color-scale'>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+                <li className='color-scale__item'></li>
+              </ul>
+              <div className='scale-labels'>
+                <p className='scale-number less'>poor</p>
+                <p className='scale-number more'>good</p>
+              </div>
           </div>
+        {
+            (this.state.mapZoom > 12) ?
+            <div className='recency-scale__container'>
+              <p className='legend-label'>OSM Edit Recency</p>
+              <div className='legend-bar legend-bar-osm'></div>
+            </div>
+            : <div></div>
+
+          }
         </div>
       </section >
     );
