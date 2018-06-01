@@ -188,7 +188,6 @@
     float: left;
   }
   p {
-    float: right;
     margin-top: $global-spacing/2;
   }
 }
@@ -204,6 +203,8 @@
   font-weight: $base-font-light;
   opacity: 0.8;
   font-size: 0.875rem;
+  width: 85%;
+  float: left;
 }
 
 .report__section-body {

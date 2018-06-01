@@ -92,7 +92,6 @@ class Report extends Component {
 
               <div className='inner'>
                 <div className='report__actions'>
-                  <p className='note'>Report last updated {format(timestamp, 'MMM. D, YYYY')}</p>
                   <button className='button button--small button--base-bounded'>Download Report</button>
                 </div>
                 <div className='report__header'>
@@ -102,7 +101,7 @@ class Report extends Component {
                     <li>{upperFirst(country)}</li>
                     <li>Est. Population {estimatePopulation.format('0,0')}</li>
                   </ul>
-                  <p className='report__section-description'>Praesent sollicitudin varius scelerisque. Nam nibh libero, malesuada ac ex id, semper cursus felis</p>
+                  <p className='report__section-description'>This report generated for the {upperFirst(aoi)} District was last updated on <span className='note'>{format(timestamp, 'MMM. D, YYYY')}.</span></p>
                 </div>
                 <div className='report__body'>
                   <div className='report__section'>
