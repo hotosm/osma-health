@@ -214,8 +214,9 @@
     li {
       @include column(4/12);
     }
-    .section-button {
+    li.section-button {
       margin-left: $global-spacing * 2;
+      font-size: 0.875rem;
     }
   }
   .stat-list-single {
