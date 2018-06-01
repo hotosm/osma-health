@@ -178,6 +178,7 @@
   };
 }
 
+
 .report__section-header {
   @extend .clearfix;
   margin-bottom: $global-spacing * 2;
@@ -211,6 +212,9 @@
   .stat-list {
     li {
       @include column(4/12);
+    }
+    .section-button {
+      margin-left: $global-spacing * 2;
     }
   }
   .stat-list-single {
