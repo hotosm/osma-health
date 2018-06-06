@@ -1,5 +1,4 @@
 import React from 'react';
-import infoIcon from '../graphics/icons/circle-information.svg';
 
 const labels = {
   'good': {
@@ -27,7 +26,7 @@ export default ({ completenessPercentage }) => {
   if (completenessPercentage < -0.5) {
     status = 'poor';
   } 
-  const {infoText, statusText, color} = labels[status];
+  const {statusText, color} = labels[status];
   
   return (
     <div className={`report__status ${color}`}>
