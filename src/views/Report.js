@@ -178,6 +178,7 @@ class Report extends Component {
         <div className='map__legend'>
           <div className='color-scale__container'>
               <p className='legend-label'>Map Completeness</p>
+              <p className='legend-sub'>map tiles represent presence of population in WorldPop.</p>
               <ul className='color-scale'>
                 <li className='color-scale__item'></li>
                 <li className='color-scale__item'></li>

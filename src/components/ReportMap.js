@@ -63,7 +63,7 @@ export default class ReportMap extends Component {
             ]
           }
         },
-        "filter": ["has", "index"]
+        "filter": [">", "index", -1]
       })
 
       this.map.addLayer({
