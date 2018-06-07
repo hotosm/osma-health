@@ -44,6 +44,14 @@
   font-weight: $base-font-bold;
 }
 
+.legend-sub {
+  position: relative;
+  font-weight: $base-font-regular;
+  font-style: italic;
+  font-size: 0.75rem;
+  margin-bottom: 0.15rem;
+}
+
 .legend-bar {
   height: 0.75rem;
   position: relative;
