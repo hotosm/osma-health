@@ -18,20 +18,28 @@ const labels = {
   }
 }
 
-export default ({ completenessPercentage }) => {
+export default ({ completenessPercentage, page }) => {
   let status = 'good';
   if (completenessPercentage < 0.5) {
     status = 'fair';
   }
   if (completenessPercentage < -0.5) {
     status = 'poor';
-  } 
+  }
   const {statusText, color} = labels[status];
-  
-  return (
-    <div className={`report__status ${color}`}>
-      <p> AOI Relative Completeness: {statusText}</p>
-    </div>
-  );
+
+  if (page === "home") {
+    return (
+      <div className={`report__status ${color}`}>
+        <p>{statusText} relative completeness</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className={`report__status ${color}`}>
+        <p className={`report__text--${color}`}>{statusText}</p>
+      </div>
+    );
+  }
 
 }

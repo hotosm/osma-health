@@ -81,8 +81,7 @@
 .report__panel-container {
   position: absolute;
   @include column(6/12);
-  top: 0;
-  bottom: 0;
+  top: 10px;
   transition: left 0.5s ease-in-out;
 }
 
@@ -91,7 +90,7 @@
 }
 
 .report__panel-container--open {
-  left: 0;
+  left: 10px;
 }
 
 .report__panel-button {
@@ -105,18 +104,18 @@
 
 .report__panel {
   color: #FFF;
-  height: 92vh;
+  height: 90vh;
   width: 95%;
   float: left;
   background: linear-gradient(to bottom, rgba(52,71,98,0.8) 0%,rgba(38,35,35,0.8) 100%);
   overflow: auto;
-  .inner::-webkit-scrollbar { 
-    display: none; 
+  .inner::-webkit-scrollbar {
+    display: none;
   }
 }
 
-.report__panel::-webkit-scrollbar { 
-  display: none; 
+.report__panel::-webkit-scrollbar {
+  display: none;
 }
 
 .report__actions {
@@ -247,15 +246,23 @@
   p {
     position: relative;
     padding-left: $global-spacing;
-    padding-top:0.75rem;
     font-weight: $base-font-bold;
     font-size: 0.75rem;
-    text-transform: uppercase;
     float: left;
   }
   button {
     float: right;
   }
+}
+
+.report__text--poor {
+  color: #EB6856;
+}
+.report__text--fair {
+  color: #FFF11A;
+}
+.report__text--good {
+  color: #39CC31;
 }
 
 .report__status--poor {
@@ -264,7 +271,7 @@
       content: '';
       position: absolute;
       left: 0;
-      top: 0.85rem;
+      top: 0.19rem;
       height: 12px;
       width: 12px;
       border-radius: 99999px;
@@ -279,7 +286,7 @@
       content: '';
       position: absolute;
       left: 0;
-      top: 0.85rem;
+      top: 0.19rem;
       height: 12px;
       width: 12px;
       border-radius: 99999px;
@@ -294,7 +301,7 @@
       content: '';
       position: absolute;
       left: 0;
-      top: $global-spacing/1.5;
+      top: 0.19rem;
       height: 12px;
       width: 12px;
       border-radius: 99999px;

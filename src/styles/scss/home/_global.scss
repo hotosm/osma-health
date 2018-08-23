@@ -7,6 +7,7 @@
   font-size: 0.875rem;
   width: 90%;
   opacity: 0.8;
+	color: #929db3;
 }
 
 .panel__section {
@@ -37,11 +38,11 @@
 .panel {
   color: #FFF;
   position: relative;
-  height: 92vh;
+  height: 90vh;
   width: 95%;
   float: left;
-  background: linear-gradient(to bottom, rgba(52,71,98,0.8) 0%,rgba(38,35,35,0.8) 100%);
-  overflow: auto;
+  background: #2c3038;
+	overflow: auto;
 }
 
 header {
@@ -68,4 +69,36 @@ header ul {
   list-style: none;
   float: left;
   margin-left: $global-spacing * 3;
+}
+
+.aoi-list-item {
+	background-color: #383d47;
+	margin: 4px 0;
+	padding: 10px;
+}
+
+.aoi-list-item h1 {
+	font-size: 1.05rem;
+	font-weight: bold;
+	color: #fff;
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(20px, auto);
+	cursor: pointer;
+}
+
+.aoi-list-item-detail {
+  grid-column: 1/14;
+  grid-row: 1;
+	color: #929db3;
+}
+
+.aoi-list-arrow {
+	grid-column: 15;
+	grid-row: 1;
+	vertical-align: middle;
 }

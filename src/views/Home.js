@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomeMap from '../components/HomeMap';
-import HomeSelect from '../components/HomeSelect';
+import { AoiOption } from '../components/AoiOption';
 import PanelContainer from '../components/PanelContainer';
 
 class Home extends Component {
@@ -22,7 +22,7 @@ class Home extends Component {
   }
 
   render() {
-    const { boundaries } = this.props;
+    const { boundaries, history } = this.props;
 
     return (
       <section className='page__body'>
@@ -38,11 +38,18 @@ class Home extends Component {
                     The report focuses on attribute completeness, edit recency, map completeness relative to population, and data errors like duplicate buildings and invalid geometries.
                   </p>
                 </div>
+                <hr />
                 <div className='panel__body'>
                   <div className='panel__section'>
                     <div className='panel__form'>
-                      <p className='form__label'>Select an area of interest to see the report.</p>
-                      <HomeSelect boundaries={boundaries} handleChange={this.handleChange} />
+                      <p className='panel__description'>Reports</p>
+                      <div className='panel__aoi__list'>
+                        <div className='panel__aoi__list__content'>
+                          {boundaries.map(item =>
+                            <AoiOption aoi={item} history={history} />
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
