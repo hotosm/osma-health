@@ -27,6 +27,10 @@ export default class ReportMap extends Component {
       zoom: 9,
       center
     });
+    this.map.addControl(
+      new mapboxgl.NavigationControl({showCompass: false}),
+      'bottom-right'
+    );
 
     this.map.on('load', () => {
       this.map.addSource('aoi', {

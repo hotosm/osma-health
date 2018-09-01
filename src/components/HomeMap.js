@@ -22,6 +22,11 @@ class HomeMap extends Component {
       style: 'mapbox://styles/devseed/cjfvggcjha5ml2rmyy25i1vde',
       zoom: 3
     });
+    
+    this.map.addControl(
+      new mapboxgl.NavigationControl({showCompass: false}),
+      'bottom-right'
+    );
 
     this.map.on('load', () => {
       this.setState({
@@ -45,7 +50,7 @@ class HomeMap extends Component {
        * This initialization is only called once
        * this is due to the fact that once we load the source
        * for boundaries, we check that it is already loaded and
-       * skip it. 
+       * skip it.
        * If we need to modify the boundaries dynamically this will
        * have to be re-written
        */
