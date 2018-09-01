@@ -41,7 +41,7 @@
   height: 90vh;
   width: 95%;
   float: left;
-  background: #2c3038;
+  background: $background-color;
 	overflow: auto;
 }
 
@@ -71,7 +71,7 @@ header ul {
   margin-left: $global-spacing * 3;
 }
 
-.aoi-list-item {
+.aoi-list-item, .report__summary-item {
 	background-color: #383d47;
 	margin: 4px 0;
 	padding: 10px;

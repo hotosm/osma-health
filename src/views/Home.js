@@ -45,8 +45,8 @@ class Home extends Component {
                       <p className='panel__description'>Reports</p>
                       <div className='panel__aoi__list'>
                         <div className='panel__aoi__list__content'>
-                          {boundaries.map(item =>
-                            <AoiOption aoi={item} history={history} />
+                          {boundaries.map((item, n) =>
+                            <AoiOption aoi={item} history={history} key={n} />
                           )}
                         </div>
                       </div>
@@ -56,6 +56,34 @@ class Home extends Component {
               </div>
             </div>
           </PanelContainer>
+          <div className='map__legend'>
+            <div className='color-scale__container'>
+                <p className='legend-label'>Completeness</p>
+                <ul className='color-scale'>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                </ul>
+                <div className='scale-labels'>
+                  <p className='scale-number-bad less'>Bad</p>
+                  <p className='scale-number-good more'>Good</p>
+                </div>
+            </div>
+            {
+              (this.state.mapZoom > 12) ?
+              <div className='recency-scale__container'>
+                <p className='legend-label'>OSM Edit Recency</p>
+                <div className='legend-bar legend-bar-osm'></div>
+              </div>
+              : <div></div>
+
+            }
+          </div>
         </div>
       </section >
     );

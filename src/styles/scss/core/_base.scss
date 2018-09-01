@@ -110,13 +110,8 @@ a.link--secondary {
 
 .row {
   @extend .clearfix;
-  padding-left: $global-spacing * 3;
-  padding-right: $global-spacing * 3;
-
-  @include media(xlarge-up) {
-    padding-left: $global-spacing * 5;
-    padding-right: $global-spacing * 5;
-  }
+  padding-left: $global-spacing * 2;
+  padding-right: $global-spacing * 2;
 
   &--centered {
     margin-left: auto;
