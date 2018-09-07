@@ -275,12 +275,19 @@
     position: relative;
     padding-left: $global-spacing;
     font-weight: $base-font-bold;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     float: left;
   }
   button {
     float: right;
   }
+}
+
+.white-bg-text {
+  background-color: #fff;
+  color: $background-color;
+  padding: 0 2px;
+  font-weight: bold;
 }
 
 .report__text--poor {

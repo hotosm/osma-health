@@ -71,7 +71,7 @@ class Report extends Component {
     const today = new Date();
     let recentEditsFromTimeBins = 0;
     let totalEditsFromTimeBins = 0;
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 1; i++) {
       const date = subMonths(today, i);
       const key = format(date, 'YYYYMM');
       if (timeBins[key]) {
@@ -126,19 +126,20 @@ class Report extends Component {
                     <div className="report__summary-item">
                       <p>2.<span className="report__summary-item-title">Attribute Completeness</span></p>
                       <div className="report__summary-general">
-                        {numberUntaggedWays.format('0,0')} untagged closeways / {percentResidentialBuildings.format('0.00%')} residential buildings
+                        <strong>{numberUntaggedWays.format('0,0')}</strong> untagged closeways
+                        / <strong>{percentResidentialBuildings.format('0.00%')}</strong> residential buildings
                       </div>
                     </div>
                     <div className="report__summary-item">
                       <p>3.<span className="report__summary-item-title">Temporal Accuracy</span></p>
                       <div className="report__summary-general">
-                        {percentRecentBuildings.format('0.00%')} buildings edited in the last 6 months
+                        <strong>{percentRecentBuildings.format('0.00%')}</strong> buildings edited last month
                       </div>
                     </div>
                     <div className="report__summary-item">
                       <p>4.<span className="report__summary-item-title">Data Errors</span></p>
                       <div className="report__summary-general">
-                        {numberDuplicates.format('0,0')} data errors
+                        <span className="white-bg-text">{numberDuplicates.format('0,0')}</span> data errors
                       </div>
                     </div>
                   </div>
