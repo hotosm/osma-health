@@ -1,5 +1,5 @@
 const COUNTRIES_URL = 'https://raw.githubusercontent.com/hotosm/osma-health-workers/master/countries.json';
-const STATS_BASE_URL = 'https://s3.amazonaws.com/osma-health/data' 
+const STATS_BASE_URL = 'https://s3.amazonaws.com/osma-health/data';
 
 const URLize = str => str.toLowerCase().replace(/\s/g, '+');
 async function fetchCountries() {
@@ -32,8 +32,21 @@ async function fetchStats (country, boundary) {
     throw new Error('Could not retrieve boundary stats');
   }
 }
+
+async function fetchGeneralCompletenessStats (country, boundary) {
+  const url = `${STATS_BASE_URL}/${URLize(country)}/stats.json`;
+  const response = await fetch(url);
+
+  if (response.ok) {
+    return response.json();
+  } else {
+    throw new Error('Could not retrieve boundary stats');
+  }
+}
+
 export default {
   fetchCountries,
   fetchStats,
+  fetchGeneralCompletenessStats,
   fetchDomain
 }

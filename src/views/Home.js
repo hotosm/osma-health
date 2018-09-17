@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import HomeMap from '../components/HomeMap';
 import { AoiOption } from '../components/AoiOption';
 import PanelContainer from '../components/PanelContainer';
+import { requestStats } from '../state/AppState';
+
 
 class Home extends Component {
   constructor(props) {
@@ -10,8 +12,14 @@ class Home extends Component {
     this.state = {
       panelOpen: true
     }
-
+    this.props.getStats(this.props.countries);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.countries.length !== prevProps.countries.length) {
+      this.props.getStats(this.props.countries);
+    }
   }
 
   handleChange(option) {
@@ -22,7 +30,7 @@ class Home extends Component {
   }
 
   render() {
-    const { boundaries, history } = this.props;
+    const { boundaries, history, generalStats } = this.props;
 
     return (
       <section className='page__body'>
@@ -46,7 +54,7 @@ class Home extends Component {
                       <div className='panel__aoi__list'>
                         <div className='panel__aoi__list__content'>
                           {boundaries.map((item, n) =>
-                            <AoiOption aoi={item} history={history} key={n} />
+                            <AoiOption aoi={item} history={history} key={n} stats={generalStats}/>
                           )}
                         </div>
                       </div>
@@ -92,8 +100,16 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    boundaries: state.AppState.boundaries
+    boundaries: state.AppState.boundaries,
+    countries: Object.keys(state.AppState.countries),
+    generalStats: state.AppState.generalStats
   }
 }
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = dispatch => {
+  return {
+    getStats: (...args) => dispatch(requestStats(...args))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

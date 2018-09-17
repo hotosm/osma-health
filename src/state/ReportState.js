@@ -79,7 +79,7 @@ export default function AppState (state = initialState, action) {
       });
 
     default:
-      break
+      break;
   }
 
   return state;

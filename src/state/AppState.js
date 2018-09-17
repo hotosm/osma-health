@@ -7,6 +7,10 @@ const COUNTRY_FETCH_SUCCEEDED = 'COUNTRY_FETCH_SUCCEEDED';
 const BOUNDARY_SELECTED = 'BOUNDARY_SELECTED';
 const COUNTRIES_REQUESTED = 'COUNTRIES_REQUESTED';
 
+const STATS_FETCH_FAILED = 'STATS_FETCH_FAILED';
+const STATS_FETCH_SUCCEEDED = 'STATS_FETCH_SUCCEEDED';
+const STATS_REQUESTED = 'STATS_REQUESTED';
+
 export function countryFetchFailed (message) {
   console.error(COUNTRY_FETCH_FAILED, message);
   return { type: COUNTRY_FETCH_FAILED, message };
@@ -24,7 +28,36 @@ export function requestCountries () {
   return { type: COUNTRIES_REQUESTED };
 }
 
+export function statsFetchFailed (message) {
+  console.error(STATS_FETCH_FAILED, message);
+  return { type: STATS_FETCH_FAILED, message };
+}
+
+export function statsFetchSucceeded (data) {
+  return { type: STATS_FETCH_SUCCEEDED, data };
+}
+
+export function requestStats (countries) {
+  return { type: STATS_REQUESTED, countries };
+}
+
+
 /* Saga */
+export function* fetchGeneralStats (data) {
+  try {
+    if (data.countries.length > 0) {
+      var countries = data.countries.values();
+      var entry;
+      while (!(entry = countries.next()).done) {
+        let data = yield call(Api.fetchGeneralCompletenessStats, entry.value);
+        yield put(statsFetchSucceeded(data));
+      }
+    }
+  } catch (e) {
+    yield put(statsFetchFailed(e.message));
+  }
+}
+
 export function* fetchCountries () {
   try {
     const countries = yield call(Api.fetchCountries);
@@ -36,12 +69,14 @@ export function* fetchCountries () {
 
 export function* appSaga () {
   yield takeLatest (COUNTRIES_REQUESTED, fetchCountries);
+  yield takeLatest (STATS_REQUESTED, fetchGeneralStats);
 }
 
 /* initialState */
 const initialState = {
   countries: {},
   boundaries: [],
+  generalStats: {}
 }
 
 /* Reducer */
@@ -66,8 +101,13 @@ export default function AppState (state = initialState, action) {
         boundaries
       });
 
+    case STATS_FETCH_SUCCEEDED:
+      return Object.assign({}, state, {
+        generalStats: Object.assign({}, state.generalStats, action.data),
+      });
+
     default:
-      break
+      break;
   }
 
   return state;
