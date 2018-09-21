@@ -38,7 +38,7 @@
 .panel {
   color: #FFF;
   position: relative;
-  height: 90vh;
+  height: 88.7vh;
   width: 95%;
   float: left;
   background: $background-color;
@@ -57,19 +57,21 @@ header {
 }
 
 header h1 {
-  color: $primary-color;
-  font-size: 1.15rem;
-  line-height: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 0.95rem;
   float: left;
+	border: 2px solid $nav-font-color;
+  color: $nav-font-color;
+  font-family: "Archivo",sans-serif;
+  padding: 9px 10px;
+  flex: 0 1 auto;
+  font-weight: bold;
+	margin-right: 22px;
 }
 
-header ul {
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  list-style: none;
-  float: left;
-  margin-left: $global-spacing * 3;
-}
+// header h1:hover {
+//  background-color: #eaeaeb;
+// }
 
 .aoi-list-item, .report__summary-item {
 	background-color: #383d47;

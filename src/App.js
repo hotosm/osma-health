@@ -7,6 +7,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import Report from './views/Report';
 import Home from './views/Home';
 import About from './views/About';
+
 class App extends Component {
 
   componentWillMount () {
@@ -18,23 +19,30 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-        <header className='page__header'>
-          <div className='inner'>
-            <h1><a href='/'>HOT Analytics for Health</a></h1>
-            <ul>
-              <li><a href='/#/about'>About</a></li>
-            </ul>
-          </div>
-          </header>
-           <Route exact path="/" component={Home} />
-           <Route exact path="/about" component={About} />
-           <Route path="/:country/:aoi" component={Report} />
+            <header className='page__header'>
+              <div className='page__header-inner'>
+                <a className='project__name-link' href='/'><h1>HOT Analytics for Health</h1></a>
+                <div className='page__header__links'>
+                  <a href='/'>Reports</a>
+                  <a href='/#/about'>About the project</a>
+                </div>
+                <div className='page__header-hot-logo'>
+                  <span>Supported by: </span>
+                  <a href='https://hotosm.org' target='_blank'>
+                    <img src='images/logo.png' alt='HOT logo' />
+                  </a>
+                </div>
+
+              </div>
+            </header>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Route path="/:country/:aoi" component={Report} />
         </div>
       </Router>
     );
   }
 }
-
 
 const mapDispatchToProps = dispatch => {
   return {
