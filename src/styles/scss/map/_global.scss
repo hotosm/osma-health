@@ -25,13 +25,53 @@
   }
 }
 
+.map__layer-switch {
+  background-color: $background-color;
+  color: $primary-color;
+  border-radius: 3px;
+  position: absolute;
+  bottom: $global-spacing * 1.75;
+  right: $global-spacing * 3.3;
+  padding: 0.6rem 0.6rem;
+  font-size: 0.75rem;
+  z-index: 4;
+  cursor: pointer;
+}
+
+.map__layer-switch-img {
+  float: left;
+  display: flex;
+}
+
+.map__layer-switch-info {
+  float: right;
+  align-items: center;
+  margin-left: 0.5rem;
+  min-width: 3.8rem;
+}
+
+.map__layer-switch-info p {
+  padding-top: 1.1rem;
+  display: block;
+  color: $secondary-color-light;
+  line-height: 0.5rem;
+}
+
+.map__layer-switch-info h4 {
+  display: block;
+  text-align: left;
+  position: relative;
+  color: $base-color;
+  font-weight: 600;
+}
+
 .map__legend {
   background-color: $background-color;
   color: $primary-color;
   border-radius: 3px;
   position: absolute;
   bottom: $global-spacing * 1.75;
-  right: $global-spacing * 3.5;
+  right: $global-spacing * 13.3;
   padding: 0.6rem 0.75rem;
   font-size: 0.75rem;
   width: 13rem;

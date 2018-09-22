@@ -11,39 +11,58 @@ class HomeMap extends Component {
     super(props);
 
     this.state = {
-      map: null
+      map: null,
+      layer: 'Default',
+      switchImg: 'images/sat.jpg'
     }
+    this.map = null;
     this.renderCountries = this.renderCountries.bind(this);
   }
 
   componentDidMount() {
     this.map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: 'mapbox://styles/devseed/cjfvggcjha5ml2rmyy25i1vde',
+      style: `mapbox://styles/devseed/cjfvggcjha5ml2rmyy25i1vde`,
       zoom: 3
     });
-    
+
     this.map.addControl(
       new mapboxgl.NavigationControl({showCompass: false}),
       'bottom-right'
     );
-
     this.map.on('load', () => {
-      this.setState({
-        map: this.map
-      });
+      this.renderCountries();
     });
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.filterParams !== prevProps.filterParams) {
+      this.renderCountries();
+    }
   }
 
   componentWillUnmount() {
     this.map.remove();
   }
 
+  switchBaseLayer() {
+    if (this.state.layer === 'Default') {
+      this.setState({layer: 'Satellite'});
+      this.setState({switchImg: 'images/streets.png'});
+      this.map.setStyle('mapbox://styles/mapbox/satellite-v9');
+    } else {
+      this.setState({layer: 'Default'});
+      this.setState({switchImg: 'images/sat.jpg'});
+      this.map.setStyle('mapbox://styles/devseed/cjfvggcjha5ml2rmyy25i1vde');
+    }
+    this.map.on('styledata', () => {
+      this.renderCountries();
+    });
+  }
+
   renderCountries() {
     const { boundaries, history } = this.props;
-    const { map } = this.state;
 
-    if (boundaries && boundaries.length > 0 && map) {
+    if (boundaries && boundaries.length > 0 && this.map) {
       const aois = featureCollection(boundaries);
 
       /**
@@ -54,13 +73,13 @@ class HomeMap extends Component {
        * If we need to modify the boundaries dynamically this will
        * have to be re-written
        */
-      if (!map.getSource('aois')) {
-        map.addSource('aois', {
+      if (!this.map.getSource('aois')) {
+        this.map.addSource('aois', {
           'type': 'geojson',
           'data': aois
         });
 
-        map.addLayer({
+        this.map.addLayer({
           'id': 'aoi-fill',
           'type': 'fill',
           'source': 'aois',
@@ -70,16 +89,16 @@ class HomeMap extends Component {
           }
         });
 
-        map.on('click', 'aoi-fill', (e) => {
+        this.map.on('click', 'aoi-fill', (e) => {
           const { country, id } = e.features[0].properties;
           history.push(`/${country}/${id}`);
         });
 
-        map.on('mouseenter', 'aoi-fill', () => {
-          map.getCanvas().style.cursor = 'pointer';
+        this.map.on('mouseenter', 'aoi-fill', () => {
+          this.map.getCanvas().style.cursor = 'pointer';
         });
 
-        map.addLayer({
+        this.map.addLayer({
           'id': 'aoi-line',
           'type': 'line',
           'source': 'aois',
@@ -89,20 +108,29 @@ class HomeMap extends Component {
             'line-width': 1,
           }
         });
-        map.fitBounds(bbox(aois), { maxZoom: 6 });
+        this.map.fitBounds(bbox(aois), { maxZoom: 6 });
       }
     }
   }
 
   render() {
-    this.renderCountries();
 
     const style = {
       textAlign: 'left',
       height: '100%'
     };
 
-    return <div style={style} ref={el => this.mapContainer = el} />;
+    return <div style={style} ref={el => this.mapContainer = el} >
+            <div className='map__layer-switch' onClick={e => this.switchBaseLayer()}>
+              <div className='map__layer-switch-img'>
+                <img src={this.state.switchImg} alt="base map switcher"/>
+              </div>
+              <div className='map__layer-switch-info'>
+                <p>View</p>
+                <h4>{this.state.layer}</h4>
+              </div>
+            </div>
+          </div>;
   }
 }
 
