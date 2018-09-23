@@ -28,7 +28,7 @@ class App extends Component {
                 </div>
                 <div className='page__header-hot-logo'>
                   <span>Supported by: </span>
-                  <a href='https://hotosm.org' target='_blank'>
+                  <a href='https://hotosm.org' target='_blank' rel="noopener noreferrer">
                     <img src='images/logo.png' alt='HOT logo' />
                   </a>
                 </div>
