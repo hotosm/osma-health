@@ -11,7 +11,6 @@ class HomeMap extends Component {
     super(props);
 
     this.state = {
-      map: null,
       layer: 'Default',
       switchImg: 'images/sat.jpg'
     }
@@ -33,11 +32,6 @@ class HomeMap extends Component {
     this.map.on('load', () => {
       this.renderCountries();
     });
-  }
-  componentDidUpdate(prevProps) {
-    if (this.props.filterParams !== prevProps.filterParams) {
-      this.renderCountries();
-    }
   }
 
   componentWillUnmount() {
@@ -114,13 +108,12 @@ class HomeMap extends Component {
   }
 
   render() {
-
     const style = {
       textAlign: 'left',
       height: '100%'
     };
 
-    return <div style={style} ref={el => this.mapContainer = el} >
+    return <div style={style} ref={el => this.mapContainer = el}>
             <div className='map__layer-switch' onClick={e => this.switchBaseLayer()}>
               <div className='map__layer-switch-img'>
                 <img src={this.state.switchImg} alt="base map switcher"/>
