@@ -6,7 +6,7 @@
 	position: relative;
 	@include column(12/12);
 	background-color: rgba($base-color, 0.2);
-  height: 90.3vh;
+  height: calc(100vh - 62px);
 }
 
 .map__actions {
@@ -32,7 +32,7 @@
   position: absolute;
   bottom: $global-spacing * 1.75;
   right: $global-spacing * 3.3;
-  padding: 0.6rem 0.6rem;
+  padding: 0.7rem 0.6rem 0.6rem 0.65rem;
   font-size: 0.75rem;
   z-index: 4;
   cursor: pointer;
@@ -121,7 +121,7 @@
 .report__panel-container {
   position: absolute;
   @include column(6/12);
-  top: 10px;
+  top: 14px;
   transition: left 0.5s ease-in-out;
 }
 
