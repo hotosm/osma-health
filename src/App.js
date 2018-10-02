@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { requestCountries } from './state/AppState';
 import { HashRouter as Router, Route } from 'react-router-dom';
 
+import { Header } from './components/Header';
 /* Views */
 import Report from './views/Report';
 import Home from './views/Home';
 import About from './views/About';
+
 class App extends Component {
 
   componentWillMount () {
@@ -18,23 +20,15 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-        <header className='page__header'>
-          <div className='inner'>
-            <h1><a href='/'>HOT Analytics for Health</a></h1>
-            <ul>
-              <li><a href='/#/about'>About</a></li>
-            </ul>
-          </div>
-          </header>
-           <Route exact path="/" component={Home} />
-           <Route exact path="/about" component={About} />
-           <Route path="/:country/:aoi" component={Report} /> 
+          <Header />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Route path="/:country/:aoi" component={Report} />
         </div>
       </Router>
     );
   }
 }
-
 
 const mapDispatchToProps = dispatch => {
   return {

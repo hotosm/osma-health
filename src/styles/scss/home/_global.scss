@@ -7,6 +7,7 @@
   font-size: 0.875rem;
   width: 90%;
   opacity: 0.8;
+	color: #929db3;
 }
 
 .panel__section {
@@ -37,11 +38,11 @@
 .panel {
   color: #FFF;
   position: relative;
-  height: 92vh;
+  height: calc(100vh - 76px);
   width: 95%;
   float: left;
-  background: linear-gradient(to bottom, rgba(52,71,98,0.8) 0%,rgba(38,35,35,0.8) 100%);
-  overflow: auto;
+  background: $background-color;
+	overflow: auto;
 }
 
 header {
@@ -56,16 +57,50 @@ header {
 }
 
 header h1 {
-  color: $primary-color;
-  font-size: 1.15rem;
-  line-height: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 0.95rem;
   float: left;
+	border: 2px solid $nav-font-color;
+  color: $nav-font-color;
+  font-family: "Archivo",sans-serif;
+  padding: 9px 10px;
+  flex: 0 1 auto;
+  font-weight: bold;
+	margin-right: 22px;
 }
 
-header ul {
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  list-style: none;
-  float: left;
-  margin-left: $global-spacing * 3;
+// header h1:hover {
+//  background-color: #eaeaeb;
+// }
+
+.aoi-list-item, .report__summary-item {
+	background-color: #383d47;
+	margin: 4px 0;
+	padding: 10px;
+}
+
+.aoi-list-item h1 {
+	font-size: 1.05rem;
+	font-weight: bold;
+	color: #fff;
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(20px, auto);
+	cursor: pointer;
+}
+
+.aoi-list-item-detail {
+  grid-column: 1/14;
+  grid-row: 1;
+	color: #929db3;
+}
+
+.aoi-list-arrow {
+	grid-column: 15;
+	grid-row: 1;
+	vertical-align: middle;
 }

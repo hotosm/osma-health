@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomeMap from '../components/HomeMap';
-import HomeSelect from '../components/HomeSelect';
+import { AoiOption } from '../components/AoiOption';
 import PanelContainer from '../components/PanelContainer';
+import { requestStats } from '../state/AppState';
+
 
 class Home extends Component {
   constructor(props) {
@@ -10,8 +12,14 @@ class Home extends Component {
     this.state = {
       panelOpen: true
     }
-
+    this.props.getStats(this.props.countries);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.countries.length !== prevProps.countries.length) {
+      this.props.getStats(this.props.countries);
+    }
   }
 
   handleChange(option) {
@@ -22,7 +30,7 @@ class Home extends Component {
   }
 
   render() {
-    const { boundaries } = this.props;
+    const { boundaries, history, generalStats } = this.props;
 
     return (
       <section className='page__body'>
@@ -38,17 +46,52 @@ class Home extends Component {
                     The report focuses on attribute completeness, edit recency, map completeness relative to population, and data errors like duplicate buildings and invalid geometries.
                   </p>
                 </div>
+                <hr />
                 <div className='panel__body'>
                   <div className='panel__section'>
                     <div className='panel__form'>
-                      <p className='form__label'>Select an area of interest to see the report.</p>
-                      <HomeSelect boundaries={boundaries} handleChange={this.handleChange} />
+                      <p className='panel__description'>Reports</p>
+                      <div className='panel__aoi__list'>
+                        <div className='panel__aoi__list__content'>
+                          {boundaries.map((item, n) =>
+                            <AoiOption aoi={item} history={history} key={n} stats={generalStats}/>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </PanelContainer>
+          <div className='map__legend'>
+            <div className='color-scale__container'>
+                <p className='legend-label'>Completeness</p>
+                <ul className='color-scale'>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                  <li className='color-scale__item'></li>
+                </ul>
+                <div className='scale-labels'>
+                  <p className='scale-number-bad less'>Bad</p>
+                  <p className='scale-number-good more'>Good</p>
+                </div>
+            </div>
+            {
+              (this.state.mapZoom > 12) ?
+              <div className='recency-scale__container'>
+                <p className='legend-label'>OSM Edit Recency</p>
+                <div className='legend-bar legend-bar-osm'></div>
+              </div>
+              : <div></div>
+
+            }
+          </div>
         </div>
       </section >
     );
@@ -57,8 +100,16 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    boundaries: state.AppState.boundaries
+    boundaries: state.AppState.boundaries,
+    countries: Object.keys(state.AppState.countries),
+    generalStats: state.AppState.generalStats
   }
 }
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = dispatch => {
+  return {
+    getStats: (...args) => dispatch(requestStats(...args))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

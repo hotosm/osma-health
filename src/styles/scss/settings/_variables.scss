@@ -8,8 +8,10 @@
 $base-color: #FFF;                                   // Dark green
 $primary-color: #36414D;                                // dark blue
 $secondary-color: #8EA0B3;                              // light blue
-$secondary-color-light: #C9D2E3; 
+$secondary-color-light: #C9D2E3;
+$tertiary-color: #68707f;
 $highlight-color: #76B5FF;                       // Blue light
+$background-color: #2c3038;
 
 /* State colors */
 
@@ -48,6 +50,8 @@ $heading-font-light: 300;
 $heading-font-regular: 500;
 $heading-font-bold: 700;
 $heading-font-weight: $heading-font-regular;
+
+$nav-font-color: #D73F3F;
 
 
 /* Decoration

@@ -17,7 +17,7 @@
   text-shadow: none;
   border: 0;
   border-radius: $base-border-radius;
-  font-weight: $base-font-bold;
+  font-weight: $base-font-regular;
   cursor: pointer;
 
   /* States */
@@ -80,6 +80,13 @@
   };
 }
 
+.button--tertiary-filled {
+  @include button-variation($tertiary-color, "filled", "dark");
+  &:hover {
+    background-color: lighten($tertiary-color, 10%);
+  };
+}
+
 .button--primary-bounded {
   @include button-variation($primary-color, "bounded", null);
 }
@@ -137,7 +144,7 @@
 .button-group--small .button {
   line-height: 1.25rem;
   font-size: 0.875rem;
-  padding: 0.25rem 1rem;
+  padding: 0.75rem 0.75rem;
   min-width: 2rem;
 }
 
@@ -272,7 +279,7 @@
       width: 50%;
       word-break: break-all;
     }
-  } 
+  }
 }
 
 .button--info:hover .info-text {
@@ -354,4 +361,23 @@
   > .button + .button {
     margin-top: -$base-border-width;
   }
+}
+
+.link-back {
+  text-decoration: none;
+  &:before {
+    content: url(../../graphics/icons/chevron-left.svg);
+    height: 1rem;
+    width: 1rem;
+    margin-top: 0.1rem;
+    height: 1rem;
+    width: 1rem;
+    left: 0;
+    top: 1rem;
+  }
+}
+
+.report-link {
+  font-size: 0.875rem;
+  padding-top: 0.75rem;
 }

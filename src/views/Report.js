@@ -71,7 +71,7 @@ class Report extends Component {
     const today = new Date();
     let recentEditsFromTimeBins = 0;
     let totalEditsFromTimeBins = 0;
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 1; i++) {
       const date = subMonths(today, i);
       const key = format(date, 'YYYYMM');
       if (timeBins[key]) {
@@ -92,19 +92,60 @@ class Report extends Component {
 
               <div className='inner'>
                 <div className='report__actions'>
-                  <button className='button button--small button--base-bounded'>Download Report</button>
+                  <Link to="/" className='button button--small button--tertiary-filled link-back'>
+                    Report Index
+                  </Link>
+                  {
+                    (layer.properties.hot_export
+                      ? <a target="_blank" href={layer.properties.hot_export}
+                          className='report-link color-white float-right'>
+                          Export data from this report
+                        </a>
+                      : <div style={{display: "none"}}></div>
+                    )
+                  }
                 </div>
                 <div className='report__header'>
-                  <h2 className='report__label'>Data Quality Report</h2>
-                  <h1 className='report__title'>{upperFirst(aoi)} District</h1>
-                  <ul className='report__meta'>
-                    <li>{upperFirst(country)}</li>
-                    <li>Est. Population {estimatePopulation.format('0,0')}</li>
-                  </ul>
-                  <p className='report__section-description'>This report generated for the {upperFirst(aoi)} District was last updated on <span className='note'>{format(timestamp, 'MMM. D, YYYY')}.</span></p>
+                  <div className="report__section-update-date">
+                    <p>Updated {format(timestamp, 'MMM. D, YYYY')}</p>
+                  </div>
+                  <div>
+                    <h1 className='report__title'>{upperFirst(aoi)} District</h1>
+                    <ul className='report__meta'>
+                      <li>{upperFirst(country)}</li>
+                      <li>Est. Population {estimatePopulation.format('0,0')}</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <div className="report__summary-item">
+                      <p>1.<span className="report__summary-item-title">Relative Completeness</span></p>
+                      <div className="report__summary-status">
+                        <CompletenessStatus completenessPercentage={averageCompleteness} />
+                      </div>
+                    </div>
+                    <div className="report__summary-item">
+                      <p>2.<span className="report__summary-item-title">Attribute Completeness</span></p>
+                      <div className="report__summary-general">
+                        <strong>{numberUntaggedWays.format('0,0')}</strong> untagged closeways
+                        / <strong>{percentResidentialBuildings.format('0.00%')}</strong> residential buildings
+                      </div>
+                    </div>
+                    <div className="report__summary-item">
+                      <p>3.<span className="report__summary-item-title">Temporal Accuracy</span></p>
+                      <div className="report__summary-general">
+                        <strong>{percentRecentBuildings.format('0.00%')}</strong> buildings edited last month
+                      </div>
+                    </div>
+                    <div className="report__summary-item">
+                      <p>4.<span className="report__summary-item-title">Data Errors</span></p>
+                      <div className="report__summary-general">
+                        <span className="white-bg-text">{numberDuplicates.format('0,0')}</span> data errors
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div className='report__body'>
-                  <div className='report__section'>
+                  <div id="section-1" className='report__section'>
                     <div className='report__section-header'>
                       <h3 className='section__number'>Section 1</h3>
                       <h2 className='report__section-title'>Relative Completeness</h2>
@@ -115,7 +156,7 @@ class Report extends Component {
                     </div>
                   </div>
 
-                  <div className='report__section'>
+                  <div id="section-2" className='report__section'>
                     <div className='report__section-header'>
                       <h3 className='section__number'>Section 2</h3>
                       <h2 className='report__section-title'>Attribute Completeness</h2>
@@ -131,7 +172,7 @@ class Report extends Component {
                     </div>
                   </div>
 
-                  <div className='report__section'>
+                  <div id="section-3" className='report__section'>
                     <div className='report__section-header'>
                       <h3 className='section__number'>Section 3</h3>
                       <h2 className='report__section-title'>Temporal Accuracy</h2>
@@ -149,7 +190,7 @@ class Report extends Component {
                     </div>
                   </div>
 
-                  <div className='report__section'>
+                  <div id="section-4" className='report__section'>
                     <div className='report__section-header'>
                       <h3 className='section__number'>Section 4</h3>
                       <h2 className='report__section-title'>Data Errors</h2>
@@ -166,19 +207,9 @@ class Report extends Component {
             </div>
           </PanelContainer>
         </div>
-        <ul className='map__actions button--group'>
-          <li><Link to="/" className='button button--small button--primary-filled'>Back to all AOIS</Link></li>
-          {
-            (layer.properties.hot_export ?
-              <li><a target="_blank" href={layer.properties.hot_export} className='button button--small button--primary-filled'>Export AOI Data</a></li>
-              : <div style={{display: "none"}}></div>
-            )
-          }
-        </ul>
         <div className='map__legend'>
           <div className='color-scale__container'>
-              <p className='legend-label'>Map Completeness</p>
-              <p className='legend-sub'>map tiles represent presence of population in WorldPop.</p>
+              <p className='legend-label'>Completeness</p>
               <ul className='color-scale'>
                 <li className='color-scale__item'></li>
                 <li className='color-scale__item'></li>
@@ -190,11 +221,11 @@ class Report extends Component {
                 <li className='color-scale__item'></li>
               </ul>
               <div className='scale-labels'>
-                <p className='scale-number less'>poor</p>
-                <p className='scale-number more'>good</p>
+                <p className='scale-number-bad less'>Bad</p>
+                <p className='scale-number-good more'>Good</p>
               </div>
           </div>
-        {
+          {
             (this.state.mapZoom > 12) ?
             <div className='recency-scale__container'>
               <p className='legend-label'>OSM Edit Recency</p>
