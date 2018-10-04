@@ -144,7 +144,7 @@
 
 .report__panel {
   color: #FFF;
-  height: 88.7vh;
+  height: calc(100vh - 76px);
   width: 95%;
   float: left;
   background: $background-color;

@@ -1,12 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router'
 
 
 class Header extends React.Component {
-
   render() {
-    const { match, location, history } = this.props;
     return(
       <header className='page__header'>
         <div className='page__header-inner'>
