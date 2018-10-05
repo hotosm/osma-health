@@ -9,7 +9,7 @@ class Header extends React.Component {
         <div className='page__header-inner'>
           <a className='project__name-link' href='/'><h1>HOT Analytics for Health</h1></a>
           <div className='page__header__links'>
-            <a className={this.props.location.pathname === '/' ? `active` : `inactive`} href='/'>
+            <a className={this.props.location.pathname === '/' ? `active` : `inactive`} href='/#/'>
               Reports
             </a>
             <a className={this.props.location.pathname === '/about' ? `active` : `inactive`} href='/#/about'>
