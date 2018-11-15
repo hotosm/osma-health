@@ -52,7 +52,6 @@ export default class ReportMap extends Component {
     });
     const aoi = this.props.aoi;
     if (aoi && this.props.domain && this.map) {
-      console.log('map');
       // prepare a quantile scale with the domain of predictions.
       if (!this.map.getSource('aoi')){
         this.map.addSource('aoi', {

@@ -97,7 +97,7 @@ class Report extends Component {
                   </Link>
                   {
                     (layer.properties.hot_export
-                      ? <a target="_blank" href={layer.properties.hot_export}
+                      ? <a target="_blank" rel="noopener noreferrer" href={layer.properties.hot_export}
                           className='report-link color-white float-right'>
                           Export data from this report
                         </a>
