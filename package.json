@@ -39,5 +39,11 @@
     "node-sass-chokidar": "^1.2.2",
     "npm-run-all": "^4.1.2",
     "shx": "^0.2.2"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
