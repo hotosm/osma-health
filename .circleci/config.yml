@@ -2,7 +2,7 @@ version: 2
 jobs:
   build_prod:
     docker:
-      - image: willemarcel/circleci:node9.0-python2.7
+      - image: quay.io/hotosm/circleci:node9.10-python2.7
     steps:
       - checkout
       - restore_cache:
