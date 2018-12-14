@@ -86,7 +86,7 @@ class Report extends Component {
     return (
       <section className='page__body'>
         <div className='map'>
-          {<ReportMap aoi={layer} domain={domain} onZoom={this.onMapZoom} />}
+          {<ReportMap aoi={layer} domain={domain} country={country} onZoom={this.onMapZoom} />}
           <PanelContainer>
             <div className='report__panel'>
 
