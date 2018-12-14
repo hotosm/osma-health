@@ -70,7 +70,7 @@ export default class ReportMap extends Component {
       if (!this.map.getSource('completeness')){
         this.map.addSource('completeness', {
           type: 'vector',
-          url: 'mapbox://hot.botswana-completeness'
+          url: `mapbox://hot.${this.props.country}-completeness`
         })
       }
 
