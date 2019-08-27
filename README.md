@@ -1,5 +1,7 @@
 # OSM Analytics Health Module
 
+[![CircleCI](https://circleci.com/gh/hotosm/osma-health/tree/master.svg?style=svg)](https://circleci.com/gh/hotosm/osma-health/tree/master)
+
 osma-health is an independent extension of OSM Analytics for health campaigns run by HOT. The current phase is to understand the progress and completeness of Malaria campaigns.
 
 This repository will be the main ticket tracker, as well as the front-end code. Other repos are:
@@ -16,7 +18,7 @@ The front-end is hosted on S3 bucket called `osma-health`. To deploy, merge a PR
 
 ## Background
 
-OSM Analytics for Health aims to help field-based, academic and governmental organizations to improve their prevention strategies by tracking where the map is incomplete. `hotosm/osma-health` is a web application developed by HOT and Development Seed to assess the quality and accuracy of OpenStreetMap data. 
+OSM Analytics for Health aims to help field-based, academic and governmental organizations to improve their prevention strategies by tracking where the map is incomplete. `hotosm/osma-health` is a web application developed by HOT and Development Seed to assess the quality and accuracy of OpenStreetMap data.
 
 By combining Worldpop and completely mapped areas in OSM, we can train a model to estimate gaps in building density. We overlay this with other metrics to provide a report of coverage area.
 
@@ -40,7 +42,7 @@ Sources of data that will be used to generate the metrics and the map layers
 Metrics displayed alongside an area of interest
 
 
-- **Overall quality indicator**: A qualitative measure of the completeness of the area of interest. 
+- **Overall quality indicator**: A qualitative measure of the completeness of the area of interest.
 - **Last time of update:** When was the report last generated?
 - **Estimated population**: Population in the area of interest
 - **Relative completeness**: A quantitative measure of completeness based on Worldpop and building density
